@@ -1,1 +1,1 @@
-export * from "./routeUtils";
+export * from './routeUtils'
