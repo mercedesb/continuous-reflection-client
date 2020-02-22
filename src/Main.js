@@ -1,6 +1,7 @@
 import React from 'react'
+import { TokenContext } from 'contexts'
 import { Wrapper } from '_shared'
 
 export function Main(props) {
-  return <Wrapper>Main!</Wrapper>
+  return <TokenContext.Consumer>{token => <Wrapper>Main!</Wrapper>}</TokenContext.Consumer>
 }

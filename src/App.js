@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { getQueryParams } from './utils'
+import { getQueryParams } from 'utils'
+import { TokenContext } from 'contexts'
 import { Login } from 'domains'
 import { Main } from './Main'
 
@@ -16,6 +17,10 @@ export default class App extends Component {
   }
 
   render() {
-    return this.isLoggedIn() ? <Main token={this.state.token} /> : <Login />
+    return (
+      <TokenContext.Provider value={this.state.token}>
+        {this.isLoggedIn() ? <Main /> : <Login />}
+      </TokenContext.Provider>
+    )
   }
 }
