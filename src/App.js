@@ -1,26 +1,35 @@
-import React, { Component } from 'react'
-import { getQueryParams } from 'utils'
+import React, { useState } from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { TokenContext } from 'contexts'
-import { Login } from 'domains'
+import { AuthenticatedRoute, Login, TokenHandler } from 'domains'
 import { Main } from './Main'
 
-export default class App extends Component {
-  constructor() {
-    super()
+export default function App() {
+  const [token, setToken] = useState(null)
 
-    const params = getQueryParams()
-    this.state = { token: params.token }
-  }
-
-  isLoggedIn() {
-    return !!this.state.token
-  }
-
-  render() {
-    return (
-      <TokenContext.Provider value={this.state.token}>
-        {this.isLoggedIn() ? <Main /> : <Login />}
-      </TokenContext.Provider>
-    )
-  }
+  return (
+    <TokenContext.Provider value={{ token, setToken }}>
+      <BrowserRouter>
+        <Switch>
+          <AuthenticatedRoute path='/journals/:id'>
+            {/* <Journal /> */}
+            <div>Rendering journal</div>
+          </AuthenticatedRoute>
+          <AuthenticatedRoute path='/journals'>
+            {/* <JournalList /> */}
+            <div>rendering list of journals</div>
+          </AuthenticatedRoute>
+          <AuthenticatedRoute path='/home'>
+            <Main />
+          </AuthenticatedRoute>
+          <Route path='/token'>
+            <TokenHandler />
+          </Route>
+          <Route path='/'>
+            <Login />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </TokenContext.Provider>
+  )
 }
