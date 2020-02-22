@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { getQueryParams } from './utils'
-import { Login } from './Auth'
+import { Login } from 'domains'
 import { Main } from './Main'
 
 export default class App extends Component {
