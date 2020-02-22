@@ -1,0 +1,29 @@
+@tailwind base;
+
+h1 {
+  @apply text-3xl font-serif;
+}
+h2 {
+  @apply text-2xl font-serif;
+}
+h3 {
+  @apply text-xl font-sans font-extrabold;
+}
+h4 {
+  @apply text-xl font-sans font-semibold;
+}
+h5 {
+  @apply text-lg font-sans font-semibold;
+}
+h6 {
+  @apply text-lg font-sans;
+}
+a {
+  @apply underline;
+}
+a.no-underline {
+  @applie no-underline;
+}
+
+@tailwind components;
+@tailwind utilities;

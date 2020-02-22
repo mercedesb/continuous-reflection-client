@@ -11,16 +11,23 @@
     "react-scripts": "3.4.0"
   },
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^2.0.6",
+    "autoprefixer": "^9.7.4",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint-config-prettier": "^6.10.0",
-    "prettier": "^1.19.1"
+    "postcss-cli": "^7.1.0",
+    "prettier": "^1.19.1",
+    "tailwindcss": "^1.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:styles": "postcss src/src.css -o src/styles.css",
+    "prebuild": "NODE_ENV=production yarn build:styles",
+    "prestart": "yarn build:styles"
   },
   "eslintConfig": {
     "extends": [
