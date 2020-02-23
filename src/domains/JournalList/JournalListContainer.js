@@ -1,25 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { useApi } from 'hooks'
+import { Wrapper, Loading } from '_shared'
 
 export function JournalListContainer() {
-  const [journals, setJournals] = useState([])
+  const journals = useApi('journals')
 
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-
-    fetch(`${process.env.REACT_APP_API_CLIENT_URL}/journals?token=${token}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'Access-Control-Allow-Origin': 'localhost:3001'
-      }
-    })
-      .then(res => res.json())
-      .then(data => {
-        setJournals(data)
-      })
-      .catch(console.log)
-  }, [])
-
-  return journals.map(j => <div key={j.id}>{j.name}</div>)
+  return (
+    <Wrapper>{!journals ? <Loading /> : journals.map(j => <div key={j.id}>{j.name}</div>)}</Wrapper>
+  )
 }
