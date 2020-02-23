@@ -1,3 +1,16 @@
+## TODO
+- Test coverage
+- Minimal styling
+- Create unauthed hook (remove logic from apiClient)
+- Create apiError hook (remove logic from apiClient)
+- Chain these functions in apiClient
+- Use hooks in components and pass to apiClient
+- MoodSelectionsContext
+  - run once
+  - use for the radio buttons (RadioButton component, RadioButtonList component, wrap the MoodRadioButtonList with the context provider)
+- Update UserContext
+- Storybook
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
