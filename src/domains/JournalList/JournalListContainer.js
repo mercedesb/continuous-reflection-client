@@ -1,19 +1,25 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { TokenContext } from 'contexts'
+import React, { useState, useEffect } from 'react'
 
 export function JournalListContainer() {
-  const { token } = useContext(TokenContext)
   const [journals, setJournals] = useState([])
 
   useEffect(() => {
-    debugger
-    fetch(`${process.env.REACT_APP_API_CLIENT_URL}journals?token=${token}`)
+    const token = localStorage.getItem('token')
+
+    fetch(`${process.env.REACT_APP_API_CLIENT_URL}/journals?token=${token}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Access-Control-Allow-Origin': 'localhost:3001'
+      }
+    })
       .then(res => res.json())
       .then(data => {
         setJournals(data)
       })
       .catch(console.log)
-  })
+  }, [])
 
   return journals.map(j => <div key={j.id}>{j.name}</div>)
 }

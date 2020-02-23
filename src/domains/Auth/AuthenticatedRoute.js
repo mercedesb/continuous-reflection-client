@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { TokenContext } from 'contexts'
 
 export function AuthenticatedRoute({ component: Component, ...routeProps }) {
-  const { token } = useContext(TokenContext)
+  const token = localStorage.getItem('token')
 
   return (
     <Route
