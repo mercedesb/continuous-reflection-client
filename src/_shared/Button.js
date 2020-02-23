@@ -1,11 +1,9 @@
 import React from 'react'
 
-export function Button({ children, ...buttonProps }) {
+export function Button({ children, color, ...buttonProps }) {
+  const classes = `${color} px-4 py-2 rounded-sm text-black text-xl shadow-md hover:shadow-lg no-underline flex items-center`
   return (
-    <button
-      className='px-2 py-1 rounded-lg bg-green-400 text-green-800 text-xl font-light uppercase shadow-md hover:shadow-lg'
-      {...buttonProps}
-    >
+    <button className={classes} {...buttonProps}>
       {children}
     </button>
   )

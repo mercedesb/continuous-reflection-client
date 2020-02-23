@@ -1,35 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { TokenContext } from 'contexts'
-import { AuthenticatedRoute, Login, TokenHandler } from 'domains'
+import { TokenProvider } from 'contexts'
+import { AuthenticatedRoute, Login, TokenHandler, JournalListContainer } from 'domains'
 import { Main } from './Main'
 
 export default function App() {
-  const [token, setToken] = useState(null)
-
   return (
-    <TokenContext.Provider value={{ token, setToken }}>
+    <TokenProvider>
       <BrowserRouter>
         <Switch>
-          <AuthenticatedRoute path='/journals/:id'>
-            {/* <Journal /> */}
-            <div>Rendering journal</div>
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path='/journals'>
-            {/* <JournalList /> */}
-            <div>rendering list of journals</div>
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path='/home'>
-            <Main />
-          </AuthenticatedRoute>
+          <AuthenticatedRoute path='/journals/:id' component={() => <div>Rendering journal</div>} />
+          <AuthenticatedRoute path='/journals' component={JournalListContainer} />
           <Route path='/token'>
             <TokenHandler />
           </Route>
-          <Route path='/'>
+          <Route path='/login'>
             <Login />
           </Route>
+          <AuthenticatedRoute path='/' component={Main} />
         </Switch>
       </BrowserRouter>
-    </TokenContext.Provider>
+    </TokenProvider>
   )
 }

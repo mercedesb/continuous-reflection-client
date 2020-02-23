@@ -1,17 +1,13 @@
-import React from 'react'
-import { Redirect, useParams, useLocation } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Redirect, useLocation } from 'react-router-dom'
 import { TokenContext } from 'contexts'
 
 export function TokenHandler() {
-  let { token } = useParams()
-  let location = useLocation()
+  const { setToken } = useContext(TokenContext)
+  const location = useLocation()
+  const token = new URLSearchParams(location.search).get('token')
 
-  return (
-    <TokenContext.Consumer>
-      {({ _, setToken }) => {
-        setToken(token)
-        return <Redirect to={{ pathname: '/home', state: { from: location } }} />
-      }}
-    </TokenContext.Consumer>
-  )
+  setToken(token)
+
+  return <Redirect to={{ pathname: '/', state: { from: location } }} />
 }
