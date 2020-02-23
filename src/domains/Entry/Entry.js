@@ -13,12 +13,13 @@ export function Entry() {
     <Loading />
   ) : (
     <React.Fragment>
-      <h1>{entry.title}</h1>
+      <h1>{entry.content.title}</h1>
       <Button color='purple-200'>
         <Link
           to={{
             pathname: `/journals/${id}/entries/${entry_id}/edit`
           }}
+          className='no-underline'
         >
           Edit Entry
         </Link>

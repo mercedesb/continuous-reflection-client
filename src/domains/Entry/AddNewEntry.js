@@ -6,7 +6,6 @@ import { AddNewPoetryEntry } from './AddNewPoetryEntry'
 export function AddNewEntry() {
   const { state } = useLocation()
   const template = state ? state.template : ''
-  debugger
 
   if (template === 'Professional Development') {
     return <AddNewProfessionalDevelopmentEntry />

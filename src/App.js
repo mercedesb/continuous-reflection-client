@@ -4,6 +4,7 @@ import {
   AddNewEntry,
   AddNewJournal,
   AuthenticatedRoute,
+  EditEntry,
   Entry,
   HomeContainer,
   JournalContainer,
@@ -16,6 +17,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <AuthenticatedRoute path='/journals/:id/entries/:entry_id/edit' component={EditEntry} />
         <AuthenticatedRoute path='/journals/:id/entries/new' component={AddNewEntry} />
         <AuthenticatedRoute path='/journals/:id/entries/:entry_id' component={Entry} />
         <AuthenticatedRoute path='/journals/new' component={AddNewJournal} />
