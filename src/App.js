@@ -1,20 +1,27 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import {
+  AddNewEntry,
   AddNewJournal,
   AuthenticatedRoute,
-  Login,
-  TokenHandler,
+  HomeContainer,
+  JournalContainer,
   JournalListContainer,
-  HomeContainer
+  Login,
+  TokenHandler
 } from 'domains'
 
 export default function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <AuthenticatedRoute path='/journals/new' component={() => <AddNewJournal />} />
-        <AuthenticatedRoute path='/journals/:id' component={() => <div>Rendering journal</div>} />
+        <AuthenticatedRoute path='/journals/:id/entries/new' component={AddNewEntry} />
+        <AuthenticatedRoute
+          path='/journals/:id/entries/:id'
+          component={() => <div>rendering entry</div>}
+        />
+        <AuthenticatedRoute path='/journals/new' component={AddNewJournal} />
+        <AuthenticatedRoute path='/journals/:id' component={JournalContainer} />
         <AuthenticatedRoute path='/journals' component={JournalListContainer} />
         <Route path='/token'>
           <TokenHandler />

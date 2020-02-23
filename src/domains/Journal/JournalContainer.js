@@ -13,7 +13,16 @@ export function JournalContainer() {
     <React.Fragment>
       <h1>{journal.name}</h1>
       <Button color='purple-200'>
-        <Link to={`/journals/${id}/entries/new`}>Add Entry</Link>
+        <Link
+          to={{
+            pathname: `/journals/${id}/entries/new`,
+            state: {
+              template: journal.template
+            }
+          }}
+        >
+          Add Entry
+        </Link>
       </Button>
     </React.Fragment>
   )

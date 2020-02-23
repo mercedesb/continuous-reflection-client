@@ -28,7 +28,7 @@ async function fetchData(path, method, data) {
 
 export const apiClient = {
   get: async function(path) {
-    return fetchData(path, GET).catch
+    return fetchData(path, GET)
   },
   post: async function(path, data) {
     return fetchData(path, POST, data)

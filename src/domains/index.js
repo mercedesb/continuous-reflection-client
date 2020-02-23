@@ -1,4 +1,5 @@
 export * from './Auth'
+export * from './Entry'
 export * from './Home'
 export * from './Journal'
 export * from './JournalList'
