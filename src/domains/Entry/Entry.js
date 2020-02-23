@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useApi } from 'hooks'
-import { Loading, Button } from '_shared'
+import { Loading, PrimaryButton, Wrapper } from '_shared'
 import { ProfessionalDevelopmentEntry } from './ProfessionalDevelopmentEntry'
 import { PoetryEntry } from './PoetryEntry'
 
@@ -12,23 +12,26 @@ export function Entry() {
   return !entry ? (
     <Loading />
   ) : (
-    <React.Fragment>
-      <h1>{entry.content.title}</h1>
-      <Button color='purple-200'>
-        <Link
-          to={{
-            pathname: `/journals/${id}/entries/${entry_id}/edit`
-          }}
-          className='no-underline'
-        >
-          Edit Entry
-        </Link>
-      </Button>
+    <Wrapper>
+      <h1 className='mb-8 flex items-center justify-between'>
+        {entry.content.title}
+        <PrimaryButton>
+          <Link
+            to={{
+              pathname: `/journals/${id}/entries/${entry_id}/edit`
+            }}
+            className='no-underline'
+          >
+            Edit Entry
+          </Link>
+        </PrimaryButton>
+      </h1>
+
       {entry.content_type === 'ProfessionalDevelopmentContent' ? (
         <ProfessionalDevelopmentEntry entry={entry} />
       ) : (
         <PoetryEntry entry={entry} />
       )}
-    </React.Fragment>
+    </Wrapper>
   )
 }

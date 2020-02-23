@@ -580,12 +580,12 @@ video {
 
 h1 {
   font-size: 1.875rem;
-  font-family: Neucha, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: Open Sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 h2 {
   font-size: 1.5rem;
-  font-family: Neucha, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: Open Sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 h3 {
@@ -616,7 +616,7 @@ a {
 }
 
 a.no-underline {
-  @applie no-underline;
+  text-decoration: none;
 }
 
 @keyframes breathing {
@@ -628,7 +628,11 @@ a.no-underline {
     transform: scale(1);
   }
 
-  70% {
+  60% {
+    transform: scale(1);
+  }
+
+  80% {
     transform: scale(0.9);
   }
 

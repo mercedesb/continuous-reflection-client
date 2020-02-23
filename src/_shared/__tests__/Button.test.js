@@ -16,26 +16,26 @@ describe('Button', () => {
       expect(subject.find('button')).toHaveLength(1)
     })
 
-    it('passes all of the props except color through', () => {
+    it('passes all of the props except className through', () => {
       const button = subject.find('button').first()
       expect(button.prop('onClick')).toEqual(onClick)
     })
 
-    describe('with a color prop', () => {
-      let color
+    describe('with a className prop', () => {
+      let className
 
       beforeEach(() => {
         onClick = jest.fn()
-        color = 'bg-green-800'
+        className = 'bg-green-800'
         subject = shallow(
-          <Button onClick={onClick} color={color}>
+          <Button onClick={onClick} className={className}>
             Click me!
           </Button>
         )
       })
 
-      it('appends the color prop to the className of the the button', () => {
-        expect(subject.find(`button.${color}`)).toHaveLength(1)
+      it('appends the className prop to the className of the the button', () => {
+        expect(subject.find(`button.${className}`)).toHaveLength(1)
       })
     })
   })

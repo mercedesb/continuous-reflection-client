@@ -6,14 +6,14 @@ const SCOPE = 'user'
 
 export function LoginWithGithub() {
   return (
-    <React.Fragment>
+    <div className='flex justify-center'>
       <LinkButton
-        color='bg-white'
+        className='bg-white flex-initial'
         href={`${AUTHORIZE_URL}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&scope=${SCOPE}`}
       >
         <GithubIcon className='mr-2 text-black w-8 h-8' />
         Login with Github
       </LinkButton>
-    </React.Fragment>
+    </div>
   )
 }

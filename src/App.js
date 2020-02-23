@@ -10,6 +10,7 @@ import {
   JournalContainer,
   JournalListContainer,
   Login,
+  SignOut,
   TokenHandler
 } from 'domains'
 
@@ -23,6 +24,7 @@ export default function App() {
         <AuthenticatedRoute path='/journals/new' component={AddNewJournal} />
         <AuthenticatedRoute path='/journals/:id' component={JournalContainer} />
         <AuthenticatedRoute path='/journals' component={JournalListContainer} />
+        <AuthenticatedRoute path='/sign-out' component={SignOut} />
         <Route path='/token'>
           <TokenHandler />
         </Route>

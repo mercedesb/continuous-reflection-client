@@ -1,7 +1,12 @@
 export { Button } from './Button'
+export { PrimaryButton } from './PrimaryButton'
+export { SecondaryButton } from './SecondaryButton'
+export { FormButtons } from './FormButtons'
 export { LinkButton } from './LinkButton'
 export { Loading } from './Loading'
 export { NavLayout } from './NavLayout'
+export { TextArea } from './TextArea'
+export { TextInput } from './TextInput'
 export { Wrapper } from './Wrapper'
 
 export * from './Icons'

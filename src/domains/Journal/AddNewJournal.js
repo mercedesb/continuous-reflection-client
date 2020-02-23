@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { apiClient } from 'utils'
-import { Button } from '_shared'
+import { PrimaryButton } from '_shared'
 
 export function AddNewJournal() {
   const [name, setName] = useState('')
@@ -61,9 +61,9 @@ export function AddNewJournal() {
           />
           <label htmlFor='poetry'>Poetry</label>
         </div>
-        <Button type='submit' color='bg-purple-300'>
+        <PrimaryButton type='submit' color='bg-purple-300'>
           Save
-        </Button>
+        </PrimaryButton>
       </form>
     </React.Fragment>
   )

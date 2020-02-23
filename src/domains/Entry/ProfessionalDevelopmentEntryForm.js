@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from '_shared'
+import { FormButtons, TextArea, TextInput } from '_shared'
 
 export function ProfessionalDevelopmentEntryForm({ handleSubmit, content }) {
   const [title, setTitle] = useState()
@@ -34,10 +34,12 @@ export function ProfessionalDevelopmentEntryForm({ handleSubmit, content }) {
 
   return (
     <form onSubmit={sendRequest}>
-      <div>
-        <label htmlFor='title'>Title</label>
-        <input type='text' id='title' value={title} onChange={e => setTitle(e.target.value)} />
-      </div>
+      <TextInput
+        label='Title'
+        name='title'
+        value={title}
+        handleChange={e => setTitle(e.target.value)}
+      />
       <div>
         <input
           type='radio'
@@ -115,33 +117,25 @@ export function ProfessionalDevelopmentEntryForm({ handleSubmit, content }) {
         />
         <label htmlFor='angry'>Angry</label>
       </div>
-      <div>
-        <label htmlFor='todayILearned'>Today I Learned</label>
-        <textarea
-          id='todayILearned'
-          value={todayILearned}
-          onChange={e => setTodayILearned(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor='goalProgress'>Goal Check-in</label>
-        <textarea
-          id='goalProgress'
-          value={goalProgress}
-          onChange={e => setGoalProgress(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor='celebrations'>Celebrations</label>
-        <textarea
-          id='celebrations'
-          value={celebrations}
-          onChange={e => setCelebrations(e.target.value)}
-        />
-      </div>
-      <Button type='submit' color='bg-purple-300'>
-        Save
-      </Button>
+      <TextArea
+        label='Today I Learned'
+        name='todayILearned'
+        value={todayILearned}
+        handleChange={e => setTodayILearned(e.target.value)}
+      />
+      <TextArea
+        label='Goal Check-in'
+        name='goalProgress'
+        value={goalProgress}
+        handleChange={e => setGoalProgress(e.target.value)}
+      />
+      <TextArea
+        label='Celebrations'
+        name='celebrations'
+        value={celebrations}
+        handleChange={e => setCelebrations(e.target.value)}
+      />
+      <FormButtons />
     </form>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 
-export function LinkButton({ children, color, ...linkProps }) {
-  const classes = `${color} px-4 py-2 rounded-sm text-black text-xl shadow-md hover:shadow-lg no-underline flex items-center`
+export function LinkButton({ children, className, ...linkProps }) {
+  const classes = `${className} px-4 py-2 rounded-sm text-black text-xl shadow-md hover:shadow-lg no-underline flex items-center`
   return (
     <a className={classes} {...linkProps}>
       {children}

@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { JournalContainer } from '../JournalContainer'
 import { EntryListItem } from '../EntryListItem'
-import { Button } from '_shared'
+import { PrimaryButton } from '_shared'
 import { Link } from 'react-router-dom'
 
 let subject
@@ -40,7 +40,7 @@ describe('JournalContainer', () => {
 
   describe('render', () => {
     it('renders a button to add a new entry', () => {
-      const button = subject.find(Button)
+      const button = subject.find(PrimaryButton)
       expect(button).toHaveLength(1)
       const link = button.find(Link)
       expect(link.prop('to')['pathname']).toEqual(expect.stringMatching('/journals/1/entries/new'))

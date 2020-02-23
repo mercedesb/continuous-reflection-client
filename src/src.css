@@ -1,10 +1,10 @@
 @tailwind base;
 
 h1 {
-  @apply text-3xl font-serif;
+  @apply text-3xl font-sans;
 }
 h2 {
-  @apply text-2xl font-serif;
+  @apply text-2xl font-sans;
 }
 h3 {
   @apply text-xl font-sans font-extrabold;
@@ -22,7 +22,7 @@ a {
   @apply underline;
 }
 a.no-underline {
-  @applie no-underline;
+  @apply no-underline;
 }
 
 @keyframes breathing {
@@ -38,7 +38,13 @@ a.no-underline {
     transform: scale(1);
   }
 
-  70% {
+  60% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  80% {
     -webkit-transform: scale(0.9);
     -ms-transform: scale(0.9);
     transform: scale(0.9);

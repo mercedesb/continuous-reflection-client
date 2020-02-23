@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { JournalListContainer } from '../JournalListContainer'
 import { JournalListItem } from '../JournalListItem'
-import { Button } from '_shared'
+import { PrimaryButton } from '_shared'
 import { Link } from 'react-router-dom'
 
 jest.mock('hooks', () => ({
@@ -28,7 +28,7 @@ describe('JournalListContainer', () => {
 
   describe('render', () => {
     it('renders a button to add a new journal', () => {
-      const button = subject.find(Button)
+      const button = subject.find(PrimaryButton)
       expect(button).toHaveLength(1)
       const link = button.find(Link)
       expect(link.prop('to')).toEqual(expect.stringMatching('/journals/new'))

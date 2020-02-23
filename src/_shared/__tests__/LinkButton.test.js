@@ -17,26 +17,26 @@ describe('LinkButton', () => {
       expect(subject.find('a')).toHaveLength(1)
     })
 
-    it('passes all of the props except color through', () => {
+    it('passes all of the props except className through', () => {
       const a = subject.find('a').first()
       expect(a.prop('href')).toEqual(href)
     })
 
-    describe('with a color prop', () => {
-      let color
+    describe('with a className prop', () => {
+      let className
 
       beforeEach(() => {
         href = href
-        color = 'bg-green-800'
+        className = 'bg-green-800'
         subject = shallow(
-          <LinkButton href={href} color={color}>
+          <LinkButton href={href} className={className}>
             Click me!
           </LinkButton>
         )
       })
 
-      it('appends the color prop to the className of the the button', () => {
-        expect(subject.find(`a.${color}`)).toHaveLength(1)
+      it('appends the className prop to the className of the the button', () => {
+        expect(subject.find(`a.${className}`)).toHaveLength(1)
       })
     })
   })

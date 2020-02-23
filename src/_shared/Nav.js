@@ -3,19 +3,21 @@ import { Link } from 'react-router-dom'
 
 export function Nav() {
   return (
-    <nav className='flex flex-col flex-initial'>
-      <Link to='/' className='no-underline my-4 mx-4'>
-        Home
-      </Link>
-      <Link to='/journals' className='no-underline my-4 mx-4'>
-        Journals
-      </Link>
-      <Link to='/profile' className='no-underline my-4 mx-4'>
-        Profile
-      </Link>
-      <Link to='/sign-out' className='no-underline my-4 mx-4'>
-        Sign out
-      </Link>
+    <nav className='flex flex-initial items-center w-1/6 py-4 px-4 bg-purple-600 text-white'>
+      <div className='flex flex-col flex-1'>
+        <Link to='/' className='no-underline my-4 mx-4 font-semibold text-xl'>
+          Home
+        </Link>
+        <Link to='/journals' className='no-underline my-4 mx-4 font-semibold text-xl'>
+          Journals
+        </Link>
+        <Link to='/profile' className='no-underline my-4 mx-4 font-semibold text-xl'>
+          Profile
+        </Link>
+        <Link to='/sign-out' className='no-underline my-4 mx-4 font-semibold text-xl'>
+          Sign out
+        </Link>
+      </div>
     </nav>
   )
 }
