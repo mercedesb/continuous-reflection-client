@@ -1,7 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { AuthenticatedRoute, Login, TokenHandler, JournalListContainer } from 'domains'
-import { Main } from './Main'
+import {
+  AuthenticatedRoute,
+  Login,
+  TokenHandler,
+  JournalListContainer,
+  HomeContainer
+} from 'domains'
 
 export default function App() {
   return (
@@ -15,7 +20,7 @@ export default function App() {
         <Route path='/login'>
           <Login />
         </Route>
-        <AuthenticatedRoute path='/' component={Main} />
+        <AuthenticatedRoute path='/' component={HomeContainer} />
       </Switch>
     </BrowserRouter>
   )
