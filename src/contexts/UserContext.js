@@ -1,16 +1,14 @@
 import React, { useState, useEffect, createContext } from 'react'
+import { useApi } from 'hooks'
 
 export const UserContext = createContext({ user: null, setUser: () => {} })
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null)
+  const user = useApi(`whoami`)
 
   useEffect(() => {
-    fetch('/api/v1/whoami')
-      .then(response => response.json())
-      .then(data => {
-        setUser(data)
-      })
+    setUser(user)
   }, [])
 
   return (

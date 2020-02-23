@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export function Nav() {
   return (
-    <div className='flex flex-col flex-initial'>
+    <nav className='flex flex-col flex-initial'>
       <Link to='/' className='no-underline my-4 mx-4'>
         Home
       </Link>
@@ -16,6 +16,6 @@ export function Nav() {
       <Link to='/sign-out' className='no-underline my-4 mx-4'>
         Sign out
       </Link>
-    </div>
+    </nav>
   )
 }
