@@ -9,7 +9,7 @@ export function JournalListContainer() {
   return (
     <div>
       <h1>Your journals</h1>
-      <Button color='purple-200'>
+      <Button color='bg-purple-300'>
         <Link to='/journals/new'>Add Journal</Link>
       </Button>
       {!journals ? <Loading /> : journals.map(j => <div key={j.id}>{j.name}</div>)}
