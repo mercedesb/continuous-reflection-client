@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { apiClient } from 'utils'
 
 export function useApi(path) {
   const [data, setData] = useState(null)
-  debugger
+  let history = useHistory()
 
   useEffect(() => {
     apiClient
-      .get(path)
+      .get(path, () => history.push('/'))
       .then(data => {
         setData(data)
       })

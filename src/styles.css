@@ -619,6 +619,28 @@ a.no-underline {
   @applie no-underline;
 }
 
+@keyframes breathing {
+  0% {
+    transform: scale(0.9);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+
+  70% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+.breathing {
+  animation: breathing 7s ease-out infinite normal;
+}
+
 .container {
   width: 100%;
 }

@@ -9,7 +9,7 @@ export function AuthenticatedRoute({ component: Component, ...routeProps }) {
     <Route
       {...routeProps}
       render={props =>
-        token ? (
+        !!token ? (
           React.createElement(
             NavLayout,
             { ...props, ...routeProps },

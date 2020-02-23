@@ -23,7 +23,7 @@ export function AddNewPoetryEntry() {
     }
 
     apiClient
-      .post('poetry_contents', request)
+      .post('poetry_contents', request, () => history.push('/'))
       .then(data => {
         history.push(`/journals/${id}/entries/${data.id}`)
       })
