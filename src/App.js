@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import {
+  AddNewJournal,
   AuthenticatedRoute,
   Login,
   TokenHandler,
@@ -12,6 +13,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <AuthenticatedRoute path='/journals/new' component={() => <AddNewJournal />} />
         <AuthenticatedRoute path='/journals/:id' component={() => <div>Rendering journal</div>} />
         <AuthenticatedRoute path='/journals' component={JournalListContainer} />
         <Route path='/token'>
