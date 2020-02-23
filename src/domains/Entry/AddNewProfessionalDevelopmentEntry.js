@@ -9,16 +9,18 @@ export function AddNewProfessionalDevelopmentEntry() {
 
   const handleSubmit = async request => {
     const mergedRequest = {
-      journal_entry_attributes: {
-        journal_id: id
-      },
-      ...request
+      professional_development_content: {
+        journalEntryAttributes: {
+          journalId: id
+        },
+        ...request
+      }
     }
 
     apiClient
       .post('professional_development_contents', mergedRequest, () => history.push('/'))
       .then(data => {
-        history.push(`/journals/${id}/entries/${data.id}`)
+        history.push(`/journals/${id}/entries/${data.journalEntryId}`)
       })
       .catch(console.log)
   }

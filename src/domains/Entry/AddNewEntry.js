@@ -5,10 +5,14 @@ import { AddNewPoetryEntry } from './AddNewPoetryEntry'
 
 export function AddNewEntry() {
   const { state } = useLocation()
-  const { template } = state
-  return template === 'Professional Development' ? (
-    <AddNewProfessionalDevelopmentEntry />
-  ) : (
-    <AddNewPoetryEntry />
-  )
+  const template = state ? state.template : ''
+  debugger
+
+  if (template === 'Professional Development') {
+    return <AddNewProfessionalDevelopmentEntry />
+  } else if (template === 'Poetry') {
+    return <AddNewPoetryEntry />
+  } else {
+    return null
+  }
 }

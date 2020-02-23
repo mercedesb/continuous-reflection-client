@@ -17,7 +17,6 @@ async function fetchData(path, method, data, onUnauthorized, onError) {
       'Access-Control-Allow-Origin': origin
     }
   }).then(response => {
-    debugger
     if (!response.ok) {
       if (response.status === 401) {
         localStorage.removeItem('token')

@@ -1,25 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from '_shared'
 
 export function ProfessionalDevelopmentEntryForm({ handleSubmit, content }) {
-  const [title, setTitle] = useState(content.title)
-  const [mood, setMood] = useState(content.mood)
-  const [todayILearned, setTodayILearned] = useState(content.todayILearned)
-  const [goalProgress, setGoalProgress] = useState(content.goalProgress)
-  const [celebrations, setCelebrations] = useState(content.celebrations)
+  const [title, setTitle] = useState()
+  const [mood, setMood] = useState()
+  const [todayILearned, setTodayILearned] = useState()
+  const [goalProgress, setGoalProgress] = useState()
+  const [celebrations, setCelebrations] = useState()
+
+  useEffect(() => {
+    if (!!content) {
+      setTitle(content.title)
+      setMood(content.mood)
+      setTodayILearned(content.todayILearned)
+      setGoalProgress(content.goalProgress)
+      setCelebrations(content.celebrations)
+    }
+  }, [content])
 
   const sendRequest = async e => {
     e.preventDefault()
 
     const request = {
-      professional_development_content: {
-        title,
-        mood,
-        todayILearned,
-        goalProgress,
-        celebrations
-      }
+      title,
+      mood,
+      todayILearned,
+      goalProgress,
+      celebrations
     }
+
     handleSubmit(request)
   }
 

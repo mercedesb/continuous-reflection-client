@@ -1,50 +1,33 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { apiClient } from 'utils'
-import { Button } from '_shared'
+import { PoetryEntryForm } from './PoetryEntryForm'
 
 export function AddNewPoetryEntry() {
-  const [title, setTitle] = useState('')
-  const [poem, setPoem] = useState('')
   let history = useHistory()
   const { id } = useParams()
 
-  const handleSubmit = async e => {
-    e.preventDefault()
-
-    const request = {
+  const handleSubmit = async request => {
+    const mergedRequest = {
       poetry_content: {
-        title,
-        poem,
-        journal_entry_attributes: {
-          journal_id: id
-        }
+        journalEntryAttributes: {
+          journalId: id
+        },
+        ...request
       }
     }
 
     apiClient
-      .post('poetry_contents', request, () => history.push('/'))
+      .post('poetry_contents', mergedRequest, () => history.push('/'))
       .then(data => {
-        history.push(`/journals/${id}/entries/${data.id}`)
+        history.push(`/journals/${id}/entries/${data.journalEntryId}`)
       })
       .catch(console.log)
   }
   return (
     <React.Fragment>
       <h1>Create poetry entry</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='title'>Title</label>
-          <input type='text' id='title' value={title} onChange={e => setTitle(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor='poem'>Poem</label>
-          <textarea id='poem' value={poem} onChange={e => setPoem(e.target.value)} />
-        </div>
-        <Button type='submit' color='bg-purple-300'>
-          Save
-        </Button>
-      </form>
+      <PoetryEntryForm handleSubmit={handleSubmit} />
     </React.Fragment>
   )
 }
