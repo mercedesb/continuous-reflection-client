@@ -1,3 +1,2 @@
 export { AddNewEntry } from './AddNewEntry'
-export { ProfessionalDevelopmentEntry } from './ProfessionalDevelopmentEntry'
-export { PoetryEntry } from './PoetryEntry'
+export { Entry } from './Entry'

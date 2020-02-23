@@ -3,6 +3,7 @@ import { apiClient } from 'utils'
 
 export function useApi(path) {
   const [data, setData] = useState(null)
+  debugger
 
   useEffect(() => {
     apiClient

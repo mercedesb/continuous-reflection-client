@@ -24,6 +24,11 @@ export function JournalContainer() {
           Add Entry
         </Link>
       </Button>
+      <div>
+        {journal.journalEntries.map(entry => (
+          <Link to={`/journals/${id}/entries/${entry.id}`}>{entry.title}</Link>
+        ))}
+      </div>
     </React.Fragment>
   )
 }
