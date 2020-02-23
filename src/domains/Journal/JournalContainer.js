@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useApi } from 'hooks'
 import { Loading, Button } from '_shared'
+import { EntryListItem } from './EntryListItem'
 
 export function JournalContainer() {
   const { id } = useParams()
@@ -26,9 +27,7 @@ export function JournalContainer() {
       </Button>
       <div>
         {journal.journalEntries.map(entry => (
-          <div key={entry.id}>
-            <Link to={`/journals/${id}/entries/${entry.id}`}>{entry.title}</Link>
-          </div>
+          <EntryListItem key={entry.id} journalId={id} entry={entry} />
         ))}
       </div>
     </React.Fragment>
