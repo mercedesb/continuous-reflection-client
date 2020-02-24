@@ -8,7 +8,7 @@ export function useApi(path) {
 
   useEffect(() => {
     apiClient
-      .get(path, () => history.push('/'))
+      .get(path, () => history.push('/login'))
       .then(data => {
         setData(data)
       })

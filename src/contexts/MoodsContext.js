@@ -8,7 +8,9 @@ export function MoodsProvider({ children }) {
   const fetchedMoods = useApi('options/mood')
 
   useEffect(() => {
-    setMoods(fetchedMoods)
+    if (!!fetchedMoods) {
+      setMoods(fetchedMoods)
+    }
   }, [fetchedMoods]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

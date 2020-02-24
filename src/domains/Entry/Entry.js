@@ -8,7 +8,6 @@ import { PoetryEntry } from './PoetryEntry'
 export function Entry() {
   const { id, entry_id } = useParams()
   const entry = useApi(`journal_entries/${entry_id}`)
-  debugger
 
   return !entry ? (
     <Loading />
