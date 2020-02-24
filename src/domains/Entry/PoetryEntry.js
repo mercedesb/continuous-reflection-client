@@ -1,11 +1,8 @@
 import React from 'react'
+import { DisplayField } from '_shared'
 
 export function PoetryEntry({ entry }) {
   const { content } = entry
 
-  return (
-    <div>
-      <p>{content.poem}</p>
-    </div>
-  )
+  return <DisplayField label='Poem' name='poem' value={content.poem} />
 }

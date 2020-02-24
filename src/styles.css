@@ -628,11 +628,11 @@ a.no-underline {
     transform: scale(1);
   }
 
-  60% {
+  45% {
     transform: scale(1);
   }
 
-  80% {
+  85% {
     transform: scale(0.9);
   }
 

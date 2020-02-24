@@ -38,13 +38,13 @@ a.no-underline {
     transform: scale(1);
   }
 
-  60% {
+  45% {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
   }
 
-  80% {
+  85% {
     -webkit-transform: scale(0.9);
     -ms-transform: scale(0.9);
     transform: scale(0.9);

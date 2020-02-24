@@ -1,6 +1,4 @@
 ## TODO
-- Test coverage
-- Minimal styling
 - Create unauthed hook (remove logic from apiClient)
 - Create apiError hook (remove logic from apiClient)
 - Chain these functions in apiClient
