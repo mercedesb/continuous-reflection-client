@@ -6,8 +6,14 @@ module.exports = {
       colors: {
         black: '#0e1111',
         purple: {
-          ...defaultTheme.colors.purple,
-          600: '#8560D6'
+          100: '#D7D2D8',
+          200: '#BCB4BE',
+          300: '#948798',
+          400: '#87788B',
+          500: '#7A697E',
+          600: '#6D5A72',
+          700: '#645268',
+          800: '#504253'
         }
       },
       fontFamily: {
