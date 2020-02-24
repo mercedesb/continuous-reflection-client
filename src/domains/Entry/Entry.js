@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useApi } from 'hooks'
-import { Loading, PrimaryButton, Wrapper } from '_shared'
+import { Loading, PrimaryButton, Wrapper, PageHeader } from '_shared'
 import { ProfessionalDevelopmentEntry } from './ProfessionalDevelopmentEntry'
 import { PoetryEntry } from './PoetryEntry'
 
@@ -13,7 +13,7 @@ export function Entry() {
     <Loading />
   ) : (
     <Wrapper>
-      <h1 className='mb-8 flex items-center justify-between'>
+      <PageHeader>
         {entry.content.title}
         <PrimaryButton>
           <Link
@@ -25,7 +25,7 @@ export function Entry() {
             Edit Entry
           </Link>
         </PrimaryButton>
-      </h1>
+      </PageHeader>
 
       {entry.content_type === 'ProfessionalDevelopmentContent' ? (
         <ProfessionalDevelopmentEntry entry={entry} />

@@ -9,7 +9,7 @@ export function EditPoetryEntry({ entry }) {
 
   const handleSubmit = async request => {
     const mergedRequest = {
-      poetry_content: {
+      poetryContent: {
         journalEntryAttributes: {
           journalId: id
         },

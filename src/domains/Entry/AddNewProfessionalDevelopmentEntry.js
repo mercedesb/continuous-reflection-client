@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { apiClient } from 'utils'
+import { PageHeader } from '_shared'
 import { ProfessionalDevelopmentEntryForm } from './ProfessionalDevelopmentEntryForm'
 
 export function AddNewProfessionalDevelopmentEntry() {
@@ -9,7 +10,7 @@ export function AddNewProfessionalDevelopmentEntry() {
 
   const handleSubmit = async request => {
     const mergedRequest = {
-      professional_development_content: {
+      professionalDevelopmentContent: {
         journalEntryAttributes: {
           journalId: id
         },
@@ -27,7 +28,7 @@ export function AddNewProfessionalDevelopmentEntry() {
 
   return (
     <React.Fragment>
-      <h1>Create professional development entry</h1>
+      <PageHeader>Create professional development entry</PageHeader>
       <ProfessionalDevelopmentEntryForm handleSubmit={handleSubmit} />
     </React.Fragment>
   )

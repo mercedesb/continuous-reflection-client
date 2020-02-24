@@ -9,7 +9,7 @@ export function EditProfessionalDevelopmentEntry({ entry }) {
 
   const handleSubmit = async request => {
     const mergedRequest = {
-      professional_development_content: {
+      professionalDevelopmentContent: {
         journalEntryAttributes: {
           journalId: id
         },

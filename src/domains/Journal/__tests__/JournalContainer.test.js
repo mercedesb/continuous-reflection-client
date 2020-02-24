@@ -6,31 +6,32 @@ import { PrimaryButton } from '_shared'
 import { Link } from 'react-router-dom'
 
 let subject
+let mockJournal = {
+  id: 1,
+  name: 'Journal 1',
+  template: 'Poetry',
+  journalEntries: [
+    {
+      id: 1,
+      title: 'Journal Entry 1'
+    },
+    {
+      id: 2,
+      title: 'Journal Entry 2'
+    }
+  ]
+}
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
   useParams: () => ({
-    id: 1
+    id: mockJournal.id
   })
 }))
 
 jest.mock('hooks', () => ({
   ...jest.requireActual('hooks'),
-  useApi: () => ({
-    id: 1,
-    name: 'Journal 1',
-    template: 'Poetry',
-    journalEntries: [
-      {
-        id: 1,
-        title: 'Journal Entry 1'
-      },
-      {
-        id: 2,
-        title: 'Journal Entry 2'
-      }
-    ]
-  })
+  useApi: () => mockJournal
 }))
 
 describe('JournalContainer', () => {
@@ -51,8 +52,8 @@ describe('JournalContainer', () => {
       )
     })
 
-    it('renders a EntryListItem for each journal', () => {
-      expect(subject.find(EntryListItem)).toHaveLength(2)
+    it('renders a EntryListItem for each journal entry', () => {
+      expect(subject.find(EntryListItem)).toHaveLength(mockJournal.journalEntries.length)
     })
   })
 })

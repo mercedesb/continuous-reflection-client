@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useApi } from 'hooks'
-import { Loading, PrimaryButton, Wrapper } from '_shared'
+import { Loading, PrimaryButton, Wrapper, PageHeader } from '_shared'
 import { EntryListItem } from './EntryListItem'
 
 export function JournalContainer() {
@@ -12,7 +12,7 @@ export function JournalContainer() {
     <Loading />
   ) : (
     <Wrapper>
-      <h1 className='mb-8 flex items-center justify-between'>
+      <PageHeader>
         {journal.name}
         <PrimaryButton>
           <Link
@@ -22,11 +22,12 @@ export function JournalContainer() {
                 template: journal.template
               }
             }}
+            className='no-underline'
           >
             Add Entry
           </Link>
         </PrimaryButton>
-      </h1>
+      </PageHeader>
 
       <div>
         {journal.journalEntries.map(entry => (

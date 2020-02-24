@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useApi } from 'hooks'
-import { Loading, PrimaryButton, Wrapper } from '_shared'
+import { Loading, PrimaryButton, Wrapper, PageHeader } from '_shared'
 import { JournalListItem } from './JournalListItem'
 
 export function JournalListContainer() {
@@ -9,14 +9,14 @@ export function JournalListContainer() {
 
   return (
     <Wrapper>
-      <h1 className='mb-8 flex items-center justify-between'>
+      <PageHeader>
         Your journals{' '}
         <PrimaryButton>
           <Link to='/journals/new' className='no-underline'>
             Add Journal
           </Link>
         </PrimaryButton>
-      </h1>
+      </PageHeader>
 
       {!journals ? (
         <Loading />

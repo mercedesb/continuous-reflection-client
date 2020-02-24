@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { FormButtons, TextArea, TextInput } from '_shared'
 
 export function ProfessionalDevelopmentEntryForm({ handleSubmit, content }) {
-  const [title, setTitle] = useState()
-  const [mood, setMood] = useState()
-  const [todayILearned, setTodayILearned] = useState()
-  const [goalProgress, setGoalProgress] = useState()
-  const [celebrations, setCelebrations] = useState()
+  const [title, setTitle] = useState('')
+  const [mood, setMood] = useState('')
+  const [todayILearned, setTodayILearned] = useState('')
+  const [goalProgress, setGoalProgress] = useState('')
+  const [celebrations, setCelebrations] = useState('')
 
   useEffect(() => {
     if (!!content) {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { apiClient } from 'utils'
-import { PrimaryButton } from '_shared'
+import { FormButtons, Wrapper, PageHeader, TextInput } from '_shared'
 
 export function AddNewJournal() {
   const [name, setName] = useState('')
@@ -27,18 +27,16 @@ export function AddNewJournal() {
   }
 
   return (
-    <React.Fragment>
-      <h1>Create journal</h1>
+    <Wrapper>
+      <PageHeader>Create journal</PageHeader>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='journalName'>Name</label>
-          <input
-            type='text'
-            id='journalName'
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-        </div>
+        <TextInput
+          label='Name'
+          name='journalName'
+          value={name}
+          handleChange={e => setName(e.target.value)}
+        />
+
         <div>
           <input
             type='radio'
@@ -61,10 +59,8 @@ export function AddNewJournal() {
           />
           <label htmlFor='poetry'>Poetry</label>
         </div>
-        <PrimaryButton type='submit' color='bg-purple-300'>
-          Save
-        </PrimaryButton>
+        <FormButtons />
       </form>
-    </React.Fragment>
+    </Wrapper>
   )
 }
