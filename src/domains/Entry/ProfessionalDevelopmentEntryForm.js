@@ -40,7 +40,7 @@ export function ProfessionalDevelopmentEntryForm({ handleSubmit, content }) {
         value={title}
         handleChange={e => setTitle(e.target.value)}
       />
-      <MoodsOptions handleChange={e => setMood(e.target.value)} />
+      <MoodsOptions handleChange={e => setMood(e.target.value)} selectedMood={mood} />
       <TextArea
         label='Today I Learned'
         name='todayILearned'

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { MoodsContext } from 'contexts'
 import { InputLabel } from './InputLabel'
 
-export function MoodsOptions({ handleChange }) {
+export function MoodsOptions({ handleChange, selectedMood }) {
   const { moods } = useContext(MoodsContext)
 
   return (
@@ -20,7 +20,7 @@ export function MoodsOptions({ handleChange }) {
                 title='mood'
                 id={mood.value}
                 value={mood.value}
-                checked={mood === mood.value}
+                checked={selectedMood === mood.value}
                 onChange={handleChange}
               />
               <InputLabel name={mood.value} label={mood.label} />

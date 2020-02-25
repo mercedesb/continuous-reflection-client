@@ -29,3 +29,5 @@ export function useApi() {
         .catch(errorHandler)
   }
 }
+
+export default useApi
