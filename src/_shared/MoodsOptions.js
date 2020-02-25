@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { MoodsContext } from 'contexts'
-import { InputLabel } from './InputLabel'
+import { RadioToggle, TiredIcon } from '_shared'
 
 export function MoodsOptions({ handleChange, selectedMood }) {
   const { moods } = useContext(MoodsContext)
@@ -10,20 +10,19 @@ export function MoodsOptions({ handleChange, selectedMood }) {
       <div id='mood-label' className='w-1/6 mx-4 break-words'>
         Mood
       </div>
-      <div className='flex px-4 py-2 w-5/6'>
+      <div className='flex px-4 py-2 w-5/6 flex-wrap'>
         {moods &&
           moods.length > 0 &&
           moods.map(mood => (
-            <div className='mx-4'>
-              <input
-                type='radio'
+            <div className='mr-4 mb-4'>
+              <RadioToggle
                 title='mood'
                 id={mood.value}
                 value={mood.value}
                 checked={selectedMood === mood.value}
-                onChange={handleChange}
+                label={mood.label}
+                handleChange={handleChange}
               />
-              <InputLabel name={mood.value} label={mood.label} />
             </div>
           ))}
       </div>
