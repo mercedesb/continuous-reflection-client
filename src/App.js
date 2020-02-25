@@ -13,16 +13,13 @@ import {
   SignOut,
   TokenHandler
 } from 'domains'
-import { MoodsProvider } from 'contexts'
 
 export default function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <MoodsProvider>
-          <AuthenticatedRoute path='/journals/:id/entries/:entry_id/edit' component={EditEntry} />
-          <AuthenticatedRoute path='/journals/:id/entries/new' component={AddNewEntry} />
-        </MoodsProvider>
+        <AuthenticatedRoute path='/journals/:id/entries/:entry_id/edit' component={EditEntry} />
+        <AuthenticatedRoute path='/journals/:id/entries/new' component={AddNewEntry} />
         <AuthenticatedRoute path='/journals/:id/entries/:entry_id' component={Entry} />
         <AuthenticatedRoute path='/journals/new' component={AddNewJournal} />
         <AuthenticatedRoute path='/journals/:id' component={JournalContainer} />

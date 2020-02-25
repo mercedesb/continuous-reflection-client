@@ -6,16 +6,16 @@ const PUT = 'PUT'
 const DEL = 'DEL'
 
 export const apiClient = {
-  get: async function(path, onUnauthorized, onError) {
-    return fetchData(path, GET, null, onUnauthorized, onError)
+  get: async function(path) {
+    return fetchData(path, GET, null)
   },
-  post: async function(path, data, onUnauthorized, onError) {
-    return fetchData(path, POST, data, onUnauthorized, onError)
+  post: async function(path, data) {
+    return fetchData(path, POST, data)
   },
-  put: async function(path, data, onUnauthorized, onError) {
-    return fetchData(path, PUT, data, onUnauthorized, onError)
+  put: async function(path, data) {
+    return fetchData(path, PUT, data)
   },
-  del: async function(path, onUnauthorized, onError) {
-    return fetchData(path, DEL, null, onUnauthorized, onError)
+  del: async function(path) {
+    return fetchData(path, DEL, null)
   }
 }

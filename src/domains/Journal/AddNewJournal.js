@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { apiClient } from 'utils'
+import { useApi } from 'hooks'
 import { FormButtons, Wrapper, PageHeader, TextInput } from '_shared'
 
 export function AddNewJournal() {
   const [name, setName] = useState('')
   const [template, setTemplate] = useState('')
   let history = useHistory()
+  let { post } = useApi()
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -18,12 +19,9 @@ export function AddNewJournal() {
       }
     }
 
-    apiClient
-      .post('journals', request)
-      .then(data => {
-        history.push(`/journals/${data.id}`)
-      })
-      .catch(console.log)
+    post('journals', request).then(data => {
+      history.push(`/journals/${data.id}`)
+    })
   }
 
   return (

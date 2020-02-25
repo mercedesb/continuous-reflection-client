@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
+import { MoodsProvider } from 'contexts'
 import { Wrapper } from '_shared'
 import { AddNewProfessionalDevelopmentEntry } from './AddNewProfessionalDevelopmentEntry'
 import { AddNewPoetryEntry } from './AddNewPoetryEntry'
@@ -10,8 +11,10 @@ export function AddNewEntry() {
 
   return (
     <Wrapper>
-      {template === 'Professional Development' && <AddNewProfessionalDevelopmentEntry />}
-      {template === 'Poetry' && <AddNewPoetryEntry />}
+      <MoodsProvider>
+        {template === 'Professional Development' && <AddNewProfessionalDevelopmentEntry />}
+        {template === 'Poetry' && <AddNewPoetryEntry />}
+      </MoodsProvider>
     </Wrapper>
   )
 }

@@ -5,13 +5,13 @@ export const MoodsContext = createContext({ moods: null, setMoods: () => {} })
 
 export function MoodsProvider({ children }) {
   const [moods, setMoods] = useState([])
-  const fetchedMoods = useApi('options/mood')
+  const { get } = useApi()
 
   useEffect(() => {
-    if (!!fetchedMoods) {
-      setMoods(fetchedMoods)
-    }
-  }, [fetchedMoods]) // eslint-disable-line react-hooks/exhaustive-deps
+    get('options/mood').then(data => {
+      setMoods(data)
+    })
+  }, []) //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <MoodsContext.Provider value={{ moods: moods, setMoods: setMoods }}>

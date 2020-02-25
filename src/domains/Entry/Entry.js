@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useApi } from 'hooks'
 import { Loading, PrimaryButton, Wrapper, PageHeader } from '_shared'
@@ -7,7 +7,14 @@ import { PoetryEntry } from './PoetryEntry'
 
 export function Entry() {
   const { id, entry_id } = useParams()
-  const entry = useApi(`journal_entries/${entry_id}`)
+  const [entry, setEntry] = useState(null)
+  const { get } = useApi()
+
+  useEffect(() => {
+    get(`journal_entries/${entry_id}`).then(data => {
+      setEntry(data)
+    })
+  }, []) //eslint-disable-line react-hooks/exhaustive-deps
 
   return !entry ? (
     <Loading />

@@ -3,7 +3,14 @@ import { shallow } from 'enzyme'
 import { JournalContainer } from '../JournalContainer'
 import { EntryListItem } from '../EntryListItem'
 import { PrimaryButton } from '_shared'
-import { Link } from 'react-router-dom'
+import * as UseApiHook from '../../../hooks/useApi'
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
+  useParams: () => ({
+    id: 1
+  })
+}))
 
 let subject
 let mockJournal = {
@@ -21,18 +28,9 @@ let mockJournal = {
     }
   ]
 }
-
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
-  useParams: () => ({
-    id: mockJournal.id
-  })
-}))
-
-jest.mock('hooks', () => ({
-  ...jest.requireActual('hooks'),
-  useApi: () => mockJournal
-}))
+let getSpy = jest.spyOn(UseApiHook, 'useApi').mockImplementation(() => {
+  get: () => mockJournal
+})
 
 describe('JournalContainer', () => {
   beforeEach(() => {
@@ -43,7 +41,7 @@ describe('JournalContainer', () => {
     it('renders a button to add a new entry', () => {
       const button = subject.find(PrimaryButton)
       expect(button).toHaveLength(1)
-      const link = button.find(Link)
+      const link = button.find(Router.Link)
       expect(link.prop('to')['pathname']).toEqual(expect.stringMatching('/journals/1/entries/new'))
       expect(link.prop('to')['state']).toEqual(
         expect.objectContaining({

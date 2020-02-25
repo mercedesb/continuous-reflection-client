@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useApi } from 'hooks'
 import { Loading, PrimaryButton, Wrapper, PageHeader } from '_shared'
@@ -6,7 +6,14 @@ import { EntryListItem } from './EntryListItem'
 
 export function JournalContainer() {
   const { id } = useParams()
-  const journal = useApi(`journals/${id}`)
+  const [journal, setJournal] = useState(null)
+  const { get } = useApi()
+
+  useEffect(() => {
+    get(`journals/${id}`).then(data => {
+      setJournal(data)
+    })
+  }, []) //eslint-disable-line react-hooks/exhaustive-deps
 
   return !journal ? (
     <Loading />

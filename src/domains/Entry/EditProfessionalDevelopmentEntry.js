@@ -1,9 +1,10 @@
 import React from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import { apiClient } from 'utils'
+import { useApi } from 'hooks'
 import { ProfessionalDevelopmentEntryForm } from './ProfessionalDevelopmentEntryForm'
 
 export function EditProfessionalDevelopmentEntry({ entry }) {
+  const { put } = useApi()
   let history = useHistory()
   const { id } = useParams()
 
@@ -17,14 +18,9 @@ export function EditProfessionalDevelopmentEntry({ entry }) {
       }
     }
 
-    apiClient
-      .put(`professional_development_contents/${entry.content.id}`, mergedRequest, () =>
-        history.push('/')
-      )
-      .then(data => {
-        history.push(`/journals/${id}/entries/${data.journalEntryId}`)
-      })
-      .catch(console.log)
+    put(`professional_development_contents/${entry.content.id}`, mergedRequest).then(data => {
+      history.push(`/journals/${id}/entries/${data.journalEntryId}`)
+    })
   }
 
   return (

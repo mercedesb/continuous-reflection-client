@@ -1,7 +1,5 @@
 import { fetchData } from '../_fetchData'
 
-let onUnauthorized = jest.fn()
-let onError = jest.fn()
 let method = 'METHOD'
 let token = 'token'
 let data
@@ -83,10 +81,8 @@ describe('fetchData', () => {
   describe('when the response is successful', () => {
     it('returns the response as json', done => {
       data = {}
-      let response = fetchData('path', method, data, onUnauthorized, onError)
+      let response = fetchData('path', method, data)
       expect(response).toEqual(mockJsonPromise)
-      expect(onUnauthorized).not.toHaveBeenCalled()
-      expect(onError).not.toHaveBeenCalled()
 
       process.nextTick(() => {
         global.fetch.mockClear()
@@ -95,25 +91,7 @@ describe('fetchData', () => {
     })
   })
 
-  describe('when the response comes back wth http status 401', () => {
-    beforeEach(() => {
-      status = 401
-      ok = false
-      mockFetchPromise = Promise.resolve({
-        status: status,
-        ok: ok,
-        json: () => mockJsonPromise
-      })
-      jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise)
-    })
-
-    xit('calls onUnauthorized', () => {
-      fetchData('path', method, null, onUnauthorized, onError)
-      expect(onUnauthorized).toHaveBeenCalled()
-    })
-  })
-
-  describe('when the response comes back with other errors', () => {
+  xdescribe('when the response is not successful', () => {
     beforeEach(() => {
       status = 500
       ok = false
@@ -125,18 +103,8 @@ describe('fetchData', () => {
       jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise)
     })
 
-    describe('and onError was passed in ', () => {
-      xit('calls onError', () => {
-        fetchData('path', method, null, onUnauthorized, onError)
-        expect(onError).toHaveBeenCalled()
-      })
-    })
-
-    describe('and no error handling function was provided', () => {
-      it('returns null', () => {
-        let response = fetchData('path', method, null, onUnauthorized, onError)
-        expect(response).toEqual(mockJsonPromise)
-      })
+    it('throws an Error', () => {
+      expect(() => fetchData('path', method, null)).toThrow()
     })
   })
 })

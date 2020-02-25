@@ -13,25 +13,12 @@ export async function fetchData(path, method, data, onUnauthorized, onError) {
     }
   })
     .then(response => {
-      if (response.status === 401) {
-        localStorage.removeItem('token')
-        if (!!onUnauthorized) onUnauthorized()
-
-        throw new Error(response.json())
-      }
-
-      return response
-    })
-    .then(response => {
       if (!response.ok) {
-        if (!!onError) onError()
-
-        throw new Error(response.json())
+        throw new Error(response.status)
       }
       return response
     })
     .then(response => response.json())
-    .catch(err => console.log(err))
 
   return await response
 }

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 jest.mock('hooks', () => ({
   ...jest.requireActual('hooks'),
-  useApi: () => [
+  useApiGet: () => [
     {
       id: 1,
       name: 'Journal 1'

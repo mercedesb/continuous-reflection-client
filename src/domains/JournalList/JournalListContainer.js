@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useApi } from 'hooks'
 import { Loading, PrimaryButton, Wrapper, PageHeader } from '_shared'
 import { JournalListItem } from './JournalListItem'
 
 export function JournalListContainer() {
-  const journals = useApi('journals')
+  const [journals, setJournals] = useState(null)
+  const { get } = useApi()
+
+  useEffect(() => {
+    get(`journals`).then(data => {
+      setJournals(data)
+    })
+  }, []) //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Wrapper>

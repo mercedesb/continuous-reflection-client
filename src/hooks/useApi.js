@@ -1,19 +1,31 @@
-import { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useUnauthorizedHandler } from './useUnauthorizedHandler'
+import { useErrorHandler } from './useErrorHandler'
 import { apiClient } from 'utils'
 
-export function useApi(path) {
-  const [data, setData] = useState(null)
-  let history = useHistory()
+export function useApi() {
+  let unauthorizedHandler = useUnauthorizedHandler()
+  let errorHandler = useErrorHandler()
 
-  useEffect(() => {
-    apiClient
-      .get(path, () => history.push('/login'))
-      .then(data => {
-        setData(data)
-      })
-      .catch(console.log)
-  }, []) //eslint-disable-line react-hooks/exhaustive-deps
-
-  return data
+  return {
+    get: path =>
+      apiClient
+        .get(path)
+        .catch(unauthorizedHandler)
+        .catch(errorHandler),
+    post: (path, data) =>
+      apiClient
+        .post(path, data)
+        .catch(unauthorizedHandler)
+        .catch(errorHandler),
+    put: (path, data) =>
+      apiClient
+        .put(path, data)
+        .catch(unauthorizedHandler)
+        .catch(errorHandler),
+    del: path =>
+      apiClient
+        .del(path)
+        .catch(unauthorizedHandler)
+        .catch(errorHandler)
+  }
 }
