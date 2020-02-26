@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { MoodsContext } from 'contexts'
-import { RadioToggle, TiredIcon } from '_shared'
+import { RadioToggle } from '_shared'
 
 export function MoodsOptions({ handleChange, selectedMood }) {
   const { moods } = useContext(MoodsContext)

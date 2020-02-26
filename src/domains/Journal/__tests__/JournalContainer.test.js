@@ -1,16 +1,11 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { act } from 'react-dom/test-utils'
+import { shallow, mount } from 'enzyme'
+import { Link } from 'react-router-dom'
+import { PrimaryButton, Wrapper, PageHeader, Loading } from '_shared'
 import { JournalContainer } from '../JournalContainer'
 import { EntryListItem } from '../EntryListItem'
-import { PrimaryButton } from '_shared'
-import * as UseApiHook from '../../../hooks/useApi'
-
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
-  useParams: () => ({
-    id: 1
-  })
-}))
+import * as useApiModule from '../../../hooks/useApi'
 
 let subject
 let mockJournal = {
@@ -28,30 +23,56 @@ let mockJournal = {
     }
   ]
 }
-let getSpy = jest.spyOn(UseApiHook, 'useApi').mockImplementation(() => {
-  get: () => mockJournal
-})
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
+  useParams: () => ({
+    id: mockJournal.id
+  })
+}))
+
+jest.spyOn(useApiModule, 'useApi').mockImplementation(() => ({
+  get: () => Promise.resolve(mockJournal)
+}))
 
 describe('JournalContainer', () => {
-  beforeEach(() => {
-    subject = shallow(<JournalContainer />)
-  })
+  beforeEach(() => {})
 
   describe('render', () => {
-    it('renders a button to add a new entry', () => {
-      const button = subject.find(PrimaryButton)
-      expect(button).toHaveLength(1)
-      const link = button.find(Router.Link)
-      expect(link.prop('to')['pathname']).toEqual(expect.stringMatching('/journals/1/entries/new'))
-      expect(link.prop('to')['state']).toEqual(
-        expect.objectContaining({
-          template: 'Poetry'
-        })
-      )
+    describe('when there is no journal entry', () => {
+      beforeEach(() => {
+        subject = shallow(<JournalContainer />)
+      })
+
+      it('renders the Loading component', () => {
+        expect(subject.find(Loading)).toHaveLength(1)
+      })
     })
 
-    it('renders a EntryListItem for each journal entry', () => {
-      expect(subject.find(EntryListItem)).toHaveLength(mockJournal.journalEntries.length)
+    describe('when there is a journal entry', () => {
+      beforeEach(() => {
+        subject = mount(<JournalContainer />)
+      })
+
+      it('renders a button to add a new entry', () => {
+        expect(subject.find(Wrapper)).toHaveLength(1)
+        expect(subject.find(PageHeader)).toHaveLength(1)
+        const button = subject.find(PrimaryButton)
+        expect(button).toHaveLength(1)
+        const link = button.first().find(Link)
+        expect(link.prop('to')['pathname']).toEqual(
+          expect.stringMatching('/journals/1/entries/new')
+        )
+        expect(link.prop('to')['state']).toEqual(
+          expect.objectContaining({
+            template: 'Poetry'
+          })
+        )
+      })
+
+      it('renders a EntryListItem for each journal entry', () => {
+        expect(subject.find(EntryListItem)).toHaveLength(mockJournal.journalEntries.length)
+      })
     })
   })
 })

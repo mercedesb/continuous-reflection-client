@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useApi } from 'hooks'
+import { useApi } from 'react-use-fetch-api'
+import { useApiUrl, useErrorHandler, useUnauthorizedHandler } from 'hooks'
 import { Loading, PrimaryButton, Wrapper, PageHeader } from '_shared'
 import { EntryListItem } from './EntryListItem'
 
 export function JournalContainer() {
   const { id } = useParams()
   const [journal, setJournal] = useState(null)
-  const { get } = useApi()
+  const { get } = useApi(useUnauthorizedHandler(), useErrorHandler())
+  const url = useApiUrl(`journals/${id}`)
 
   useEffect(() => {
-    get(`journals/${id}`).then(data => {
+    get(url).then(data => {
       setJournal(data)
     })
   }, []) //eslint-disable-line react-hooks/exhaustive-deps

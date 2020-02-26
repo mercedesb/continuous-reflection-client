@@ -1,12 +1,14 @@
 import React from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import { useApi } from 'hooks'
+import { useApi } from 'react-use-fetch-api'
+import { useApiUrl, useErrorHandler, useUnauthorizedHandler } from 'hooks'
 import { PoetryEntryForm } from './PoetryEntryForm'
 
 export function AddNewPoetryEntry() {
-  const { post } = useApi()
-  let history = useHistory()
   const { id } = useParams()
+  let history = useHistory()
+  const { post } = useApi(useUnauthorizedHandler(), useErrorHandler())
+  const url = useApiUrl('poetry_contents')
 
   const handleSubmit = async request => {
     const mergedRequest = {
@@ -18,7 +20,7 @@ export function AddNewPoetryEntry() {
       }
     }
 
-    post('poetry_contents', mergedRequest).then(data => {
+    post(url, mergedRequest).then(data => {
       history.push(`/journals/${id}/entries/${data.journalEntryId}`)
     })
   }

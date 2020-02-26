@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useApi } from 'hooks'
+import { useApi } from 'react-use-fetch-api'
+import { useApiUrl, useErrorHandler, useUnauthorizedHandler } from 'hooks'
 import { FormButtons, Wrapper, PageHeader, TextInput } from '_shared'
 
 export function AddNewJournal() {
   const [name, setName] = useState('')
   const [template, setTemplate] = useState('')
   let history = useHistory()
-  let { post } = useApi()
+  let { post } = useApi(useUnauthorizedHandler(), useErrorHandler())
+  const url = useApiUrl('journals')
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -19,7 +21,7 @@ export function AddNewJournal() {
       }
     }
 
-    post('journals', request).then(data => {
+    post(url, request).then(data => {
       history.push(`/journals/${data.id}`)
     })
   }

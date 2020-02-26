@@ -1,4 +1,4 @@
-export async function useErrorHandler() {
+export function useErrorHandler() {
   // TODO: Gracefully handle error? or just use ErrorBoundary?
   const handler = err => {
     console.log(err)

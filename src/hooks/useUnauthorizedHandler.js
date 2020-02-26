@@ -1,14 +1,11 @@
 import { useHistory } from 'react-router-dom'
 
-export async function useUnauthorizedHandler() {
+export function useUnauthorizedHandler() {
   let history = useHistory()
 
   const handler = err => {
-    if (err === 401) {
-      history.push('/login')
-    } else {
-      throw err
-    }
+    // remove token?
+    history.push('/login')
   }
 
   return handler

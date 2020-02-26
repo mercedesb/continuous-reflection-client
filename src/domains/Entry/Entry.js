@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { MoodsProvider } from 'contexts'
-import { useApi } from 'hooks'
+import { useApi } from 'react-use-fetch-api'
+import { useApiUrl, useErrorHandler, useUnauthorizedHandler } from 'hooks'
 import { Loading, PrimaryButton, Wrapper, PageHeader } from '_shared'
 import { ProfessionalDevelopmentEntry } from './ProfessionalDevelopmentEntry'
 import { PoetryEntry } from './PoetryEntry'
@@ -9,10 +10,11 @@ import { PoetryEntry } from './PoetryEntry'
 export function Entry() {
   const { id, entry_id } = useParams()
   const [entry, setEntry] = useState(null)
-  const { get } = useApi()
+  const { get } = useApi(useUnauthorizedHandler(), useErrorHandler())
+  const url = useApiUrl(`journal_entries/${entry_id}`)
 
   useEffect(() => {
-    get(`journal_entries/${entry_id}`).then(data => {
+    get(url).then(data => {
       setEntry(data)
     })
   }, []) //eslint-disable-line react-hooks/exhaustive-deps
