@@ -1,11 +1,11 @@
 import React from 'react'
 import { act } from 'react-dom/test-utils'
 import { shallow, mount } from 'enzyme'
-import { Link } from 'react-router-dom'
+import { Link, MemoryRouter } from 'react-router-dom'
+import * as useApiModule from 'react-use-fetch-api'
 import { PrimaryButton, Wrapper, PageHeader, Loading } from '_shared'
 import { JournalContainer } from '../JournalContainer'
 import { EntryListItem } from '../EntryListItem'
-import * as useApiModule from '../../../hooks/useApi'
 
 let subject
 let mockJournal = {
@@ -28,7 +28,8 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
   useParams: () => ({
     id: mockJournal.id
-  })
+  }),
+  useHistory: () => ({ push: jest.fn() })
 }))
 
 jest.spyOn(useApiModule, 'useApi').mockImplementation(() => ({
@@ -50,8 +51,15 @@ describe('JournalContainer', () => {
     })
 
     describe('when there is a journal entry', () => {
-      beforeEach(() => {
-        subject = mount(<JournalContainer />)
+      beforeEach(async () => {
+        await act(async () => {
+          subject = mount(
+            <MemoryRouter>
+              <JournalContainer />
+            </MemoryRouter>
+          )
+        })
+        subject.update()
       })
 
       it('renders a button to add a new entry', () => {
