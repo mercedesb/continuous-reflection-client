@@ -1,13 +1,37 @@
-## TODO
-- Create unauthed hook (remove logic from apiClient)
-- Create apiError hook (remove logic from apiClient)
-- Chain these functions in apiClient
-- Use hooks in components and pass to apiClient
-- MoodSelectionsContext
-  - run once
-  - use for the radio buttons (RadioButton component, RadioButtonList component, wrap the MoodRadioButtonList with the context provider)
-- Update UserContext
-- Storybook
+# continuous-reflection-client
+A frontend React application for journaling and reflection. This app consumes the [continuous_reflection Rails API](https://github.com/mercedesb/continuous_reflection).
+
+A user can have different journals for different purposes: one journal for tracking their career progress and another for writing daily poetry. Eventually, this application will have analytics features, including sentiment analysis, so you can track your mood, learnings, and goal-progress over time. 
+
+## Built with
+
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/docs/installation/)
+- [Jest](https://jestjs.io/docs/en/getting-started)
+- [Enzyme](https://airbnb.io/enzyme/)
+- [react-use-fetch-api](https://www.npmjs.com/package/react-use-fetch-api)
+
+## Dependencies
+
+This project uses [Yarn](https://yarnpkg.com) as the package manager. If you don't already have Yarn and are on Mac or Linux, you can use [Homebrew](https://brew.sh/) to install it
+
+```
+brew install yarn
+```
+
+## Project set up
+```
+git clone https://github.com/mercedesb/continuous-reflection-client.git
+cd continuous-reflection-client
+yarn install
+yarn start
+```
+
+## Running the tests
+This project uses [Jest](https://jestjs.io/docs/en/getting-started) as the javascript unit testing framework.
+```
+yarn test
+```
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
