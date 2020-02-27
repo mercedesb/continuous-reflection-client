@@ -5,7 +5,7 @@ export function RadioToggle({ name, label, value, checked, handleChange, title, 
   const inactiveClasses = 'border-purple-100'
 
   return (
-    <label for={name} className='inline-flex items-center cursor-pointer'>
+    <label htmlFor={name} className='inline-flex items-center cursor-pointer'>
       <span className='relative'>
         <div
           className={`flex justify-center items-center w-40 h-32  rounded-md shadow-inner border-4  ${

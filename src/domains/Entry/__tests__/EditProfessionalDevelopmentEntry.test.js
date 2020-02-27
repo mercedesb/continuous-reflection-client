@@ -1,15 +1,13 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
+import * as useApiModule from 'react-use-fetch-api'
 import { EditProfessionalDevelopmentEntry } from '../EditProfessionalDevelopmentEntry'
 import { ProfessionalDevelopmentEntryForm } from '../ProfessionalDevelopmentEntryForm'
-import { apiClient } from 'utils'
 
 let subject
 let entry
 let mockPush = jest.fn()
 let mockId = 1
-let mockFetchPromise = Promise.resolve({})
-let putSpy = jest.spyOn(apiClient, 'put').mockImplementation(() => mockFetchPromise)
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
@@ -19,6 +17,11 @@ jest.mock('react-router-dom', () => ({
   useParams: () => ({
     id: mockId
   })
+}))
+
+let putSpy = jest.fn(() => Promise.resolve({}))
+jest.spyOn(useApiModule, 'useApi').mockImplementation(() => ({
+  put: putSpy
 }))
 
 describe('EditProfessionalDevelopmentEntry', () => {
@@ -63,8 +66,7 @@ describe('EditProfessionalDevelopmentEntry', () => {
               journalId: mockId
             })
           })
-        }),
-        expect.any(Function)
+        })
       )
     })
   })

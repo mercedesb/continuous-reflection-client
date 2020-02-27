@@ -1,14 +1,12 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
+import * as useApiModule from 'react-use-fetch-api'
 import { AddNewPoetryEntry } from '../AddNewPoetryEntry'
 import { PoetryEntryForm } from '../PoetryEntryForm'
-import { apiClient } from 'utils'
 
 let subject
 let mockPush = jest.fn()
 let mockId = 1
-let mockFetchPromise = Promise.resolve({})
-let postSpy = jest.spyOn(apiClient, 'post').mockImplementation(() => mockFetchPromise)
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
@@ -18,6 +16,11 @@ jest.mock('react-router-dom', () => ({
   useParams: () => ({
     id: mockId
   })
+}))
+
+let postSpy = jest.fn(() => Promise.resolve({}))
+jest.spyOn(useApiModule, 'useApi').mockImplementation(() => ({
+  post: postSpy
 }))
 
 describe('AddNewPoetryEntry', () => {
@@ -43,15 +46,14 @@ describe('AddNewPoetryEntry', () => {
 
     it('calls apiClient.post with the expected arguments', () => {
       expect(postSpy).toHaveBeenCalledWith(
-        'poetry_contents',
+        expect.stringContaining('poetry_contents'),
         expect.objectContaining({
           poetryContent: expect.objectContaining({
             journalEntryAttributes: expect.objectContaining({
               journalId: mockId
             })
           })
-        }),
-        expect.any(Function)
+        })
       )
     })
   })

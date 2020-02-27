@@ -7,6 +7,13 @@ let subject
 let content
 let handleSubmit = jest.fn()
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
+  useHistory: () => ({
+    push: jest.fn()
+  })
+}))
+
 describe('PoetryEntryForm', () => {
   beforeEach(() => {
     content = {}

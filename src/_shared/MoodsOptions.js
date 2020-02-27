@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { MoodsContext } from 'contexts'
 import { RadioToggle } from '_shared'
 
 export function MoodsOptions({ handleChange, selectedMood }) {
-  const { moods } = useContext(MoodsContext)
+  const { moods } = React.useContext(MoodsContext)
 
   return (
     <div role='group' aria-labelledby='mood-label' className='flex items-center m-4 p-4'>
@@ -14,7 +14,7 @@ export function MoodsOptions({ handleChange, selectedMood }) {
         {moods &&
           moods.length > 0 &&
           moods.map(mood => (
-            <div className='mr-4 mb-4'>
+            <div className='mr-4 mb-4' key={mood.value}>
               <RadioToggle
                 title='mood'
                 id={mood.value}

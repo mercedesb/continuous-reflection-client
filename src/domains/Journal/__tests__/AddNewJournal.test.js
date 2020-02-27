@@ -1,19 +1,22 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import { AddNewJournal } from '../AddNewJournal'
+import * as useApiModule from 'react-use-fetch-api'
 import { TextInput, FormButtons } from '_shared'
-import { apiClient } from 'utils'
+import { AddNewJournal } from '../AddNewJournal'
 
 let subject
 let mockPush = jest.fn()
-let mockFetchPromise = Promise.resolve({})
-let postSpy = jest.spyOn(apiClient, 'post').mockImplementation(() => mockFetchPromise)
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
   useHistory: () => ({
     push: mockPush
   })
+}))
+
+let postSpy = jest.fn(() => Promise.resolve({}))
+jest.spyOn(useApiModule, 'useApi').mockImplementation(() => ({
+  post: postSpy
 }))
 
 describe('AddNewJournal', () => {
@@ -52,7 +55,7 @@ describe('AddNewJournal', () => {
 
     it('calls apiClient.post with the expected arguments', () => {
       expect(postSpy).toHaveBeenCalledWith(
-        'journals',
+        expect.stringContaining('journals'),
         expect.objectContaining({
           journal: expect.objectContaining({
             name: 'name',

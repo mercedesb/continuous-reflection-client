@@ -6,6 +6,11 @@ import { SecondaryButton } from '../SecondaryButton'
 
 let subject
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
+  useHistory: () => ({ push: jest.fn() })
+}))
+
 describe('FormButtons', () => {
   beforeEach(() => {
     subject = shallow(<FormButtons />)
