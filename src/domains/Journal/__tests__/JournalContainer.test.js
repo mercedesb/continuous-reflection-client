@@ -41,7 +41,7 @@ describe('JournalContainer', () => {
 
   describe('render', () => {
     describe('when there is no journal entry', () => {
-      fit('renders the Loading component', () => {
+      it('renders the Loading component', () => {
         subject = shallow(<JournalContainer />)
         expect(subject.find(Loading)).toHaveLength(1)
       })
