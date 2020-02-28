@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { MoodsProvider } from 'contexts'
 import { useApi } from 'react-use-fetch-api'
 import { useApiUrl, useErrorHandler, useUnauthorizedHandler } from 'hooks'
 import { Loading, PrimaryButton, Wrapper, PageHeader } from '_shared'
@@ -39,13 +38,12 @@ export function Entry() {
           </Link>
         </PrimaryButton>
       </PageHeader>
-      <MoodsProvider>
-        {entry.contentType === 'ProfessionalDevelopmentContent' ? (
-          <ProfessionalDevelopmentEntry entry={entry} />
-        ) : (
-          <PoetryEntry entry={entry} />
-        )}
-      </MoodsProvider>
+
+      {entry.contentType === 'ProfessionalDevelopmentContent' ? (
+        <ProfessionalDevelopmentEntry entry={entry} />
+      ) : (
+        <PoetryEntry entry={entry} />
+      )}
     </Wrapper>
   )
 }

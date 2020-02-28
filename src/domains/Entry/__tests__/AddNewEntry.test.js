@@ -1,6 +1,5 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { MoodsProvider } from 'contexts'
 import { AddNewEntry } from '../AddNewEntry'
 import { AddNewProfessionalDevelopmentEntry } from '../AddNewProfessionalDevelopmentEntry'
 
@@ -19,10 +18,6 @@ describe('AddNewEntry', () => {
   describe('render', () => {
     beforeEach(() => {
       subject = shallow(<AddNewEntry />)
-    })
-
-    it('renders a MoodsProvider', () => {
-      expect(subject.find(MoodsProvider)).toHaveLength(1)
     })
 
     describe('when the template is Professional Development', () => {
