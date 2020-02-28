@@ -43,7 +43,8 @@ describe('EditPoetryEntry', () => {
       entry = {
         content: {
           title: '',
-          poem: ''
+          poem: '',
+          entryDate: ''
         }
       }
       subject = mount(<EditPoetryEntry entry={entry} />)
@@ -59,8 +60,11 @@ describe('EditPoetryEntry', () => {
         expect.stringContaining('poetry_contents'),
         expect.objectContaining({
           poetryContent: expect.objectContaining({
+            title: expect.any(String),
+            poem: expect.any(String),
             journalEntryAttributes: expect.objectContaining({
-              journalId: mockId
+              journalId: mockId,
+              entryDate: expect.any(Date)
             })
           })
         })

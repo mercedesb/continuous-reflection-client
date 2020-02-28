@@ -46,7 +46,8 @@ describe('EditProfessionalDevelopmentEntry', () => {
           mood: '',
           todayILearned: '',
           goalProgress: '',
-          celebrations: ''
+          celebrations: '',
+          entryDate: ''
         }
       }
       subject = mount(<EditProfessionalDevelopmentEntry entry={entry} />)
@@ -62,8 +63,14 @@ describe('EditProfessionalDevelopmentEntry', () => {
         expect.stringContaining('professional_development_contents'),
         expect.objectContaining({
           professionalDevelopmentContent: expect.objectContaining({
+            title: expect.any(String),
+            mood: expect.any(String),
+            todayILearned: expect.any(String),
+            goalProgress: expect.any(String),
+            celebrations: expect.any(String),
             journalEntryAttributes: expect.objectContaining({
-              journalId: mockId
+              journalId: mockId,
+              entryDate: expect.any(Date)
             })
           })
         })

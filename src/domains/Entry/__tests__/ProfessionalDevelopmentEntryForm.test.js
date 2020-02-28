@@ -1,10 +1,11 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
 import { ProfessionalDevelopmentEntryForm } from '../ProfessionalDevelopmentEntryForm'
-import { TextArea, TextInput, FormButtons } from '_shared'
+import { TextArea, TextInput, FormButtons, DatePicker } from '_shared'
 
 let subject
 let content
+let mockDate = new Date()
 let handleSubmit = jest.fn()
 
 jest.mock('react-router-dom', () => ({
@@ -13,6 +14,8 @@ jest.mock('react-router-dom', () => ({
     push: jest.fn()
   })
 }))
+
+jest.mock('moment', () => () => ({ toDate: () => mockDate }))
 
 describe('ProfessionalDevelopmentEntryForm', () => {
   beforeEach(() => {
@@ -27,6 +30,11 @@ describe('ProfessionalDevelopmentEntryForm', () => {
       expect(subject.find(TextInput)).toHaveLength(1)
       expect(subject.find(TextArea)).toHaveLength(3)
       expect(subject.find(FormButtons)).toHaveLength(1)
+    })
+
+    it('defaults the date in state to today', () => {
+      const datePicker = subject.find(DatePicker).first()
+      expect(datePicker.prop('value')).toEqual(mockDate)
     })
   })
 
@@ -78,7 +86,10 @@ describe('ProfessionalDevelopmentEntryForm', () => {
           mood: '',
           todayILearned: 'learning!',
           goalProgress: 'like a boss',
-          celebrations: '🤗'
+          celebrations: '🤗',
+          journalEntryAttributes: {
+            entryDate: expect.any(Date)
+          }
         })
       )
     })

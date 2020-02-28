@@ -13,10 +13,11 @@ export function EditPoetryEntry({ entry }) {
   const handleSubmit = async request => {
     const mergedRequest = {
       poetryContent: {
+        ...request,
         journalEntryAttributes: {
+          ...request.journalEntryAttributes,
           journalId: id
-        },
-        ...request
+        }
       }
     }
 

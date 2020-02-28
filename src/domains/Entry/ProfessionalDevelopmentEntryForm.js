@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { FormButtons, TextArea, TextInput, MoodsOptions } from '_shared'
+import moment from 'moment'
+import { FormButtons, TextArea, TextInput, MoodsOptions, DatePicker } from '_shared'
 
 export function ProfessionalDevelopmentEntryForm({ handleSubmit, content }) {
   const [title, setTitle] = useState('')
+  const [date, setDate] = useState(moment().toDate())
   const [mood, setMood] = useState('')
   const [todayILearned, setTodayILearned] = useState('')
   const [goalProgress, setGoalProgress] = useState('')
@@ -11,6 +13,11 @@ export function ProfessionalDevelopmentEntryForm({ handleSubmit, content }) {
   useEffect(() => {
     if (!!content) {
       setTitle(content.title)
+      if (!!content.entryDate) {
+        setDate(moment(content.entryDate).toDate())
+      } else {
+        setDate(moment().toDate())
+      }
       setMood(content.mood)
       setTodayILearned(content.todayILearned)
       setGoalProgress(content.goalProgress)
@@ -26,7 +33,10 @@ export function ProfessionalDevelopmentEntryForm({ handleSubmit, content }) {
       mood,
       todayILearned,
       goalProgress,
-      celebrations
+      celebrations,
+      journalEntryAttributes: {
+        entryDate: date
+      }
     }
 
     handleSubmit(request)
@@ -40,6 +50,7 @@ export function ProfessionalDevelopmentEntryForm({ handleSubmit, content }) {
         value={title}
         handleChange={e => setTitle(e.target.value)}
       />
+      <DatePicker value={date} handleChange={day => setDate(day)} />
       <MoodsOptions handleChange={e => setMood(e.target.value)} selectedMood={mood} />
       <TextArea
         label='Today I Learned'

@@ -49,7 +49,8 @@ describe('AddNewProfessionalDevelopmentEntry', () => {
         expect.objectContaining({
           professionalDevelopmentContent: expect.objectContaining({
             journalEntryAttributes: expect.objectContaining({
-              journalId: mockId
+              journalId: mockId,
+              entryDate: expect.any(Date)
             })
           })
         })

@@ -14,10 +14,11 @@ export function AddNewProfessionalDevelopmentEntry() {
   const handleSubmit = async request => {
     const mergedRequest = {
       professionalDevelopmentContent: {
+        ...request,
         journalEntryAttributes: {
+          ...request.journalEntryAttributes,
           journalId: id
-        },
-        ...request
+        }
       }
     }
 
