@@ -2,7 +2,7 @@ import React from 'react'
 import { InputLabel } from './InputLabel'
 import { InputWrapper } from './InputWrapper'
 
-export function TextInput({ handleChange, value, name, label }) {
+export function TextInput({ handleChange, value, name, label, ...props }) {
   return (
     <InputWrapper>
       <InputLabel name={name} label={label} />
@@ -12,6 +12,7 @@ export function TextInput({ handleChange, value, name, label }) {
         id={name}
         value={value}
         onChange={handleChange}
+        {...props}
       />
     </InputWrapper>
   )

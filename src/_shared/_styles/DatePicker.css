@@ -1,0 +1,52 @@
+.DatePicker {
+  margin: 3.75rem 0 0 12.5rem;
+}
+
+.DayPicker-Day {
+  padding: 0.25rem;
+}
+
+.DayPicker-Caption > div {
+  font-size: 1rem;
+}
+
+.DayPicker-Day--today {
+  color: #d53f8c;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  background-color: #6d5a72;
+}
+
+.DayPicker-Day--today.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  font-weight: 600;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
+  background-color: #7a697e;
+}
+
+.DayPicker:not(.DayPicker--interactionDisabled)
+  .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+  background-color: #d7d2d8;
+}
+
+.DayPickerInput-OverlayWrapper {
+  left: 0;
+  position: absolute;
+  top: 2.75rem;
+}
+
+.DayPickerInput {
+  display: flex;
+  width: 83.333333%;
+  position: relative;
+}
+
+.DayPickerInput input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-width: 1px;
+  border-radius: 0.25rem;
+  border-color: #718096;
+}

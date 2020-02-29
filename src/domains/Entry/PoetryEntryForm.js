@@ -41,7 +41,7 @@ export function PoetryEntryForm({ handleSubmit, content }) {
         value={title}
         handleChange={e => setTitle(e.target.value)}
       />
-      <DatePicker value={date} handleChange={day => setDate(day)} />
+      <DatePicker name='entryDate' label='Date' value={date} handleChange={day => setDate(day)} />
       <TextArea label='Poem' name='poem' value={poem} handleChange={e => setPoem(e.target.value)} />
       <FormButtons />
     </form>

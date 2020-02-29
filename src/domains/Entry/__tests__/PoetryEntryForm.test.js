@@ -6,6 +6,7 @@ import { TextArea, TextInput, FormButtons, DatePicker } from '_shared'
 let subject
 let content
 let mockDate = new Date()
+let mockToDate = () => mockDate
 let handleSubmit = jest.fn()
 
 jest.mock('react-router-dom', () => ({
@@ -15,7 +16,12 @@ jest.mock('react-router-dom', () => ({
   })
 }))
 
-jest.mock('moment', () => () => ({ toDate: () => mockDate }))
+jest.mock('moment', () => () => ({ toDate: mockToDate }))
+jest.mock('react-day-picker/moment', () => ({
+  ...jest.requireActual('react-day-picker/moment'),
+  formatDate: () => 'Saturday, March 7, 2020',
+  parseDate: () => mockToDate
+}))
 
 describe('PoetryEntryForm', () => {
   beforeEach(() => {

@@ -50,7 +50,7 @@ export function ProfessionalDevelopmentEntryForm({ handleSubmit, content }) {
         value={title}
         handleChange={e => setTitle(e.target.value)}
       />
-      <DatePicker value={date} handleChange={day => setDate(day)} />
+      <DatePicker name='entryDate' label='Date' value={date} handleChange={day => setDate(day)} />
       <MoodsOptions handleChange={e => setMood(e.target.value)} selectedMood={mood} />
       <TextArea
         label='Today I Learned'
