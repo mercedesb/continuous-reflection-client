@@ -23,19 +23,17 @@ export function JournalContainer() {
     <Wrapper>
       <PageHeader>
         {journal.name}
-        <PrimaryButton>
-          <Link
-            to={{
-              pathname: `/journals/${id}/entries/new`,
-              state: {
-                template: journal.template
-              }
-            }}
-            className='no-underline'
-          >
-            Add Entry
-          </Link>
-        </PrimaryButton>
+        <Link
+          to={{
+            pathname: `/journals/${id}/entries/new`,
+            state: {
+              template: journal.template
+            }
+          }}
+          className='no-underline'
+        >
+          <PrimaryButton>Add Entry</PrimaryButton>
+        </Link>
       </PageHeader>
 
       <div>

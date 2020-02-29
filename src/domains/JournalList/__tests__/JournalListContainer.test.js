@@ -34,7 +34,7 @@ describe('JournalListContainer', () => {
       subject = shallow(<JournalListContainer />)
       const button = subject.find(PrimaryButton)
       expect(button).toHaveLength(1)
-      const link = button.find(Link)
+      const link = subject.find(Link).first()
       expect(link.prop('to')).toEqual(expect.stringMatching('/journals/new'))
     })
 

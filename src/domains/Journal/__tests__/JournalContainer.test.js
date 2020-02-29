@@ -64,7 +64,7 @@ describe('JournalContainer', () => {
         expect(subject.find(PageHeader)).toHaveLength(1)
         const button = subject.find(PrimaryButton)
         expect(button).toHaveLength(1)
-        const link = button.first().find(Link)
+        const link = subject.find(Link).first()
         expect(link.prop('to')['pathname']).toEqual(
           expect.stringMatching('/journals/1/entries/new')
         )

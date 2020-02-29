@@ -29,16 +29,14 @@ export function Entry() {
       </div>
       <PageHeader>
         {entry.content.title}
-        <PrimaryButton>
-          <Link
-            to={{
-              pathname: `/journals/${id}/entries/${entry_id}/edit`
-            }}
-            className='no-underline'
-          >
-            Edit Entry
-          </Link>
-        </PrimaryButton>
+        <Link
+          to={{
+            pathname: `/journals/${id}/entries/${entry_id}/edit`
+          }}
+          className='no-underline'
+        >
+          <PrimaryButton>Edit Entry</PrimaryButton>
+        </Link>
       </PageHeader>
       <DisplayField
         label='Date'
