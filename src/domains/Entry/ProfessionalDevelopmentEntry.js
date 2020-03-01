@@ -3,7 +3,7 @@ import { DisplayField } from '_shared'
 import { MoodsContext } from 'contexts'
 
 export function ProfessionalDevelopmentEntry({ entry }) {
-  const { moods } = useContext(MoodsContext)
+  const { moods } = React.useContext(MoodsContext)
   const { content } = entry
   const mood = moods && moods.find(m => m.value === content.mood)
 

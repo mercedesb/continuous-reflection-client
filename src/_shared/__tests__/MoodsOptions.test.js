@@ -2,7 +2,6 @@ import React from 'react'
 import { mount } from 'enzyme'
 import { RadioToggle } from '_shared'
 import { MoodsOptions } from '../MoodsOptions'
-import { act } from 'react-dom/test-utils'
 
 let subject
 let mockMoods = [
