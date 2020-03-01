@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useApi } from 'react-use-fetch-api'
 import moment from 'moment'
 import { useApiUrl, useErrorHandler, useUnauthorizedHandler } from 'hooks'
-import { DATE_FORMAT } from 'utils'
+import { LONG_DATE_FORMAT } from 'utils'
 import { Loading, PrimaryButton, Wrapper, PageHeader, DisplayField } from '_shared'
 import { ProfessionalDevelopmentEntry } from './ProfessionalDevelopmentEntry'
 import { PoetryEntry } from './PoetryEntry'
@@ -41,7 +41,7 @@ export function Entry() {
       <DisplayField
         label='Date'
         name='date'
-        value={moment(entry.content.entryDate).format(DATE_FORMAT)}
+        value={moment(entry.content.entryDate).format(LONG_DATE_FORMAT)}
       />
 
       {entry.contentType === 'ProfessionalDevelopmentContent' ? (

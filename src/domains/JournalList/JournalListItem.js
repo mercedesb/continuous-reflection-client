@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-import { DATE_FORMAT } from 'utils'
+import { LONG_DATE_FORMAT } from 'utils'
 
 export function JournalListItem({ journal }) {
   const hasEntries = journal.journalEntries && journal.journalEntries.length > 0
@@ -14,7 +14,7 @@ export function JournalListItem({ journal }) {
           <p className='my-4 font-semibold'>{journal.template} Journal</p>
           {hasEntries && (
             <p className='italic text-xs'>
-              Lastest entry: {moment(journal.journalEntries[0].entryDate).format(DATE_FORMAT)}
+              Lastest entry: {moment(journal.journalEntries[0].entryDate).format(LONG_DATE_FORMAT)}
             </p>
           )}
         </div>
