@@ -7,10 +7,10 @@ import { EditProfessionalDevelopmentEntry } from './EditProfessionalDevelopmentE
 import { EditPoetryEntry } from './EditPoetryEntry'
 
 export function EditEntry() {
-  const { entry_id } = useParams()
+  const { entryId } = useParams()
   const [entry, setEntry] = useState(null)
   const { get } = useApi(useUnauthorizedHandler(), useErrorHandler())
-  const url = useApiUrl(`journal_entries/${entry_id}`)
+  const url = useApiUrl(`journal_entries/${entryId}`)
 
   useEffect(() => {
     get(url).then(data => {

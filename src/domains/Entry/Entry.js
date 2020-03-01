@@ -9,10 +9,10 @@ import { ProfessionalDevelopmentEntry } from './ProfessionalDevelopmentEntry'
 import { PoetryEntry } from './PoetryEntry'
 
 export function Entry() {
-  const { id, entry_id } = useParams()
+  const { id, entryId } = useParams()
   const [entry, setEntry] = useState(null)
   const { get } = useApi(useUnauthorizedHandler(), useErrorHandler())
-  const url = useApiUrl(`journal_entries/${entry_id}`)
+  const url = useApiUrl(`journal_entries/${entryId}`)
 
   useEffect(() => {
     get(url).then(data => {
@@ -31,7 +31,7 @@ export function Entry() {
         <h1>{entry.content.title}</h1>
         <Link
           to={{
-            pathname: `/journals/${id}/entries/${entry_id}/edit`
+            pathname: `/journals/${id}/entries/${entryId}/edit`
           }}
           className='no-underline'
         >

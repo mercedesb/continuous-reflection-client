@@ -20,9 +20,9 @@ export default function App() {
     <BrowserRouter>
       <MoodsProvider>
         <Switch>
-          <AuthenticatedRoute path='/journals/:id/entries/:entry_id/edit' component={EditEntry} />
+          <AuthenticatedRoute path='/journals/:id/entries/:entryId/edit' component={EditEntry} />
           <AuthenticatedRoute path='/journals/:id/entries/new' component={AddNewEntry} />
-          <AuthenticatedRoute path='/journals/:id/entries/:entry_id' component={Entry} />
+          <AuthenticatedRoute path='/journals/:id/entries/:entryId' component={Entry} />
           <AuthenticatedRoute path='/journals/new' component={AddNewJournal} />
           <AuthenticatedRoute path='/journals/:id' component={JournalContainer} />
           <AuthenticatedRoute path='/journals' component={JournalListContainer} />
