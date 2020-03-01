@@ -6,7 +6,7 @@ export function MoodsOptions({ handleChange, selectedMood }) {
   const { moods } = React.useContext(MoodsContext)
 
   return (
-    <div role='group' aria-labelledby='mood-label' className='flex items-center m-4 p-4'>
+    <div role='group' aria-labelledby='mood-label' className='flex items-center p-4'>
       <div id='mood-label' className='w-1/6 mx-4 break-words'>
         Mood
       </div>
