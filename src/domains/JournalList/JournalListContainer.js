@@ -19,7 +19,7 @@ export function JournalListContainer() {
   return (
     <Wrapper>
       <PageHeader>
-        Your journals{' '}
+        <h1>Your journals</h1>
         <Link to='/journals/new' className='no-underline'>
           <PrimaryButton>Add Journal</PrimaryButton>
         </Link>

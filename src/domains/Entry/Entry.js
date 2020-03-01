@@ -28,7 +28,7 @@ export function Entry() {
         <Link to={`/journals/${id}`}>{'<'} Back to entries</Link>
       </div>
       <PageHeader>
-        {entry.content.title}
+        <h1>{entry.content.title}</h1>
         <Link
           to={{
             pathname: `/journals/${id}/entries/${entry_id}/edit`

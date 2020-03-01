@@ -29,7 +29,9 @@ export function AddNewProfessionalDevelopmentEntry() {
 
   return (
     <React.Fragment>
-      <PageHeader>Create professional development entry</PageHeader>
+      <PageHeader>
+        <h1>Create professional development entry</h1>
+      </PageHeader>
       <ProfessionalDevelopmentEntryForm handleSubmit={handleSubmit} />
     </React.Fragment>
   )

@@ -4,7 +4,9 @@ import { Wrapper, PageHeader } from '_shared'
 export function HomeContainer() {
   return (
     <Wrapper>
-      <PageHeader>Welcome to Continuous Reflection!</PageHeader>
+      <PageHeader>
+        <h1>Welcome to Continuous Reflection!</h1>
+      </PageHeader>
     </Wrapper>
   )
 }

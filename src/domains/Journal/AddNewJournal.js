@@ -28,7 +28,9 @@ export function AddNewJournal() {
 
   return (
     <Wrapper>
-      <PageHeader>Create journal</PageHeader>
+      <PageHeader>
+        <h1>Create journal</h1>
+      </PageHeader>
       <form onSubmit={handleSubmit}>
         <TextInput
           label='Name'
