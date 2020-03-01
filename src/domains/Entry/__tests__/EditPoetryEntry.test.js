@@ -55,7 +55,7 @@ describe('EditPoetryEntry', () => {
         .simulate('submit', { preventDefault: jest.fn() })
     })
 
-    it('calls apiClient.post with the expected arguments', () => {
+    it('calls apiClient.put with the expected arguments', () => {
       expect(putSpy).toHaveBeenCalledWith(
         expect.stringContaining('poetry_contents'),
         expect.objectContaining({
@@ -70,11 +70,11 @@ describe('EditPoetryEntry', () => {
         })
       )
     })
-  })
 
-  it('redirects the user to the new journal', () => {
-    expect(mockPush).toHaveBeenCalledWith(
-      expect.stringMatching(new RegExp(`journals/${mockId}/entries/`, 'i'))
-    )
+    it('redirects the user to the new journal', () => {
+      expect(mockPush).toHaveBeenCalledWith(
+        expect.stringMatching(new RegExp(`journals/${mockId}/entries/`, 'i'))
+      )
+    })
   })
 })
