@@ -1,6 +1,7 @@
 export { Button } from './Button'
 export { PrimaryButton } from './PrimaryButton'
 export { SecondaryButton } from './SecondaryButton'
+export { ButtonAsLink } from './ButtonAsLink'
 export { DatePicker } from './DatePicker'
 export { DisplayField } from './DisplayField'
 export { FormButtons } from './FormButtons'
