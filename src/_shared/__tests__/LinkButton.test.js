@@ -1,15 +1,15 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { LinkButton } from '../LinkButton'
+import { LinkAsButton } from '../LinkAsButton'
 
 let subject
 
-describe('LinkButton', () => {
+describe('LinkAsButton', () => {
   let href
 
   beforeEach(() => {
     href = 'href'
-    subject = shallow(<LinkButton href={href}>Click me!</LinkButton>)
+    subject = shallow(<LinkAsButton href={href}>Click me!</LinkAsButton>)
   })
 
   describe('render', () => {
@@ -29,9 +29,9 @@ describe('LinkButton', () => {
         href = href
         className = 'bg-green-800'
         subject = shallow(
-          <LinkButton href={href} className={className}>
+          <LinkAsButton href={href} className={className}>
             Click me!
-          </LinkButton>
+          </LinkAsButton>
         )
       })
 
