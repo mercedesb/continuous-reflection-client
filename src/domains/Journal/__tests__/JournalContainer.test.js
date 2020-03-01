@@ -3,7 +3,15 @@ import { act } from 'react-dom/test-utils'
 import { shallow, mount } from 'enzyme'
 import { Link, MemoryRouter } from 'react-router-dom'
 import * as useApiModule from 'react-use-fetch-api'
-import { PrimaryButton, Wrapper, PageHeader, Loading } from '_shared'
+import {
+  PrimaryButton,
+  SecondaryButton,
+  Wrapper,
+  PageHeader,
+  Loading,
+  ButtonAsLink,
+  Modal
+} from '_shared'
 import { JournalContainer } from '../JournalContainer'
 import { EntryListItem } from '../EntryListItem'
 
@@ -23,22 +31,25 @@ let mockJournal = {
     }
   ]
 }
+let mockPush = jest.fn()
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
+  useHistory: () => ({
+    push: mockPush
+  }),
   useParams: () => ({
     id: mockJournal.id
-  }),
-  useHistory: () => ({ push: jest.fn() })
+  })
 }))
 
+let delSpy = jest.fn(() => Promise.resolve({}))
 jest.spyOn(useApiModule, 'useApi').mockImplementation(() => ({
-  get: () => Promise.resolve(mockJournal)
+  get: () => Promise.resolve(mockJournal),
+  del: delSpy
 }))
 
 describe('JournalContainer', () => {
-  beforeEach(() => {})
-
   describe('render', () => {
     describe('when there is no journal entry', () => {
       it('renders the Loading component', () => {
@@ -64,7 +75,7 @@ describe('JournalContainer', () => {
         expect(subject.find(PageHeader)).toHaveLength(1)
         const button = subject.find(PrimaryButton)
         expect(button).toHaveLength(1)
-        const link = subject.find(Link).first()
+        const link = subject.find(Link).at(1)
         expect(link.prop('to')['pathname']).toEqual(
           expect.stringMatching('/journals/1/entries/new')
         )
@@ -75,8 +86,63 @@ describe('JournalContainer', () => {
         )
       })
 
+      it('renders a link to edit the journal', () => {
+        const link = subject.find(Link).first()
+        expect(link.prop('to')).toEqual(expect.stringMatching('/journals/1/edit'))
+      })
+
+      it('renders a button to delete the journal', () => {
+        expect(subject.find(ButtonAsLink)).toHaveLength(1)
+      })
+
       it('renders a EntryListItem for each journal entry', () => {
         expect(subject.find(EntryListItem)).toHaveLength(mockJournal.journalEntries.length)
+      })
+
+      describe('clicking the delete button', () => {
+        it('renders a Modal', () => {
+          subject.find(ButtonAsLink).simulate('click')
+          expect(subject.find(Modal)).toHaveLength(1)
+        })
+      })
+    })
+  })
+
+  describe('delete journal modal interactions', () => {
+    beforeEach(async () => {
+      await act(async () => {
+        subject = mount(
+          <MemoryRouter>
+            <JournalContainer />
+          </MemoryRouter>
+        )
+      })
+      subject.update()
+      subject.find(ButtonAsLink).simulate('click')
+    })
+
+    describe('clicking cancel in the modal', () => {
+      it('hides (does not render) the modal', () => {
+        const modal = subject.find(Modal).first()
+        const cancelButton = modal.find(SecondaryButton).first()
+        cancelButton.simulate('click', { preventDefault: jest.fn() })
+        expect(subject.find(Modal)).toHaveLength(0)
+      })
+    })
+
+    describe('clicking confirm in the modal', () => {
+      beforeEach(() => {
+        const modal = subject.find(Modal).first()
+        const confirmButton = modal.find(PrimaryButton).first()
+        confirmButton.simulate('click', { preventDefault: jest.fn() })
+      })
+
+      it('calls apiClient.del with the expected arguments', () => {
+        expect(delSpy).toHaveBeenCalledWith(expect.stringContaining(`journals/${mockJournal.id}`))
+      })
+
+      it('redirects the user to list of journals', () => {
+        expect(mockPush).toHaveBeenCalledWith(expect.stringMatching('journals'))
       })
     })
   })
