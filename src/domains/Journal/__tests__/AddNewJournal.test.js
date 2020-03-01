@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
 import * as useApiModule from 'react-use-fetch-api'
-import { TextInput, FormButtons } from '_shared'
+import { TextInput, FormButtons, RadioToggle } from '_shared'
 import { AddNewJournal } from '../AddNewJournal'
 
 let subject
@@ -28,7 +28,7 @@ describe('AddNewJournal', () => {
     it('renders correctly', () => {
       expect(subject.find('form')).toHaveLength(1)
       expect(subject.find(TextInput).length > 0).toEqual(true)
-      expect(subject.find('input[type="radio"]').length > 0).toEqual(true)
+      expect(subject.find(RadioToggle).length > 0).toEqual(true)
       expect(subject.find(FormButtons)).toHaveLength(1)
     })
   })
