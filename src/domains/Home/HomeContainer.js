@@ -1,5 +1,6 @@
 import React from 'react'
 import { Wrapper, PageHeader } from '_shared'
+import { JournalCalendar } from './JournalCalendar'
 import { MoodOverTime } from './MoodOverTime'
 
 export function HomeContainer() {
@@ -13,6 +14,7 @@ export function HomeContainer() {
       <PageHeader>
         <h1>Welcome to Continuous Reflection!</h1>
       </PageHeader>
+      <JournalCalendar journals={[{ id: 30 }, { id: 31 }]} />
       <MoodOverTime journals={[{ id: 30 }, { id: 31 }]} />
     </Wrapper>
   )
