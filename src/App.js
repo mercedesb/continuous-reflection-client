@@ -19,6 +19,15 @@ import {
 export default function App() {
   return (
     <BrowserRouter>
+      <Switch>
+        <Route path='/token'>
+          <TokenHandler />
+        </Route>
+        <Route path='/login'>
+          <Login />
+        </Route>
+        <AuthenticatedRoute path='/sign-out' component={SignOut} />
+      </Switch>
       <MoodsProvider>
         <Switch>
           <AuthenticatedRoute path='/journals/:id/entries/:entryId/edit' component={EditEntry} />
@@ -28,14 +37,7 @@ export default function App() {
           <AuthenticatedRoute path='/journals/:id/edit' component={EditJournal} />
           <AuthenticatedRoute path='/journals/:id' component={JournalContainer} />
           <AuthenticatedRoute path='/journals' component={JournalListContainer} />
-          <AuthenticatedRoute path='/sign-out' component={SignOut} />
-          <Route path='/token'>
-            <TokenHandler />
-          </Route>
-          <Route path='/login'>
-            <Login />
-          </Route>
-          <AuthenticatedRoute path='/' component={HomeContainer} />
+          <AuthenticatedRoute exact={true} path='/' component={HomeContainer} />
         </Switch>
       </MoodsProvider>
     </BrowserRouter>
