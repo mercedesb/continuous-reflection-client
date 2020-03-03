@@ -15,7 +15,8 @@ export function DatePicker({ name, handleChange, value, label }) {
       <DayPickerInput
         name={name}
         onDayChange={handleChange}
-        selectedDays={!!value ? value : undefined}
+        value={!!value ? value : undefined}
+        selectedDay={!!value ? value : undefined}
         formatDate={formatDate}
         parseDate={parseDate}
         format={LONG_DATE_FORMAT}
