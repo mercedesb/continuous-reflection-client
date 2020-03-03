@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { DisplayField } from '_shared'
 import { MoodsContext } from 'contexts'
 

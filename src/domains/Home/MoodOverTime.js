@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import { useApi } from 'react-use-fetch-api'
 import { MoodsContext } from 'contexts'
@@ -68,7 +68,7 @@ export function MoodOverTime({ journals }) {
   }
 
   return (
-    <div className='h-64 w-1/2'>
+    <div className='h-64'>
       <LineChart
         data={getLineGraphData()}
         getColor={getColor}
