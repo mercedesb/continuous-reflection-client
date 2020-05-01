@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { useApi } from 'react-use-fetch-api'
 import { useApiUrl, useErrorHandler, useUnauthorizedHandler } from 'hooks'
+import { PageHeader } from '_shared'
 import { PoetryEntryForm } from './PoetryEntryForm'
 
 export function AddNewPoetryEntry() {
@@ -27,7 +28,9 @@ export function AddNewPoetryEntry() {
   }
   return (
     <React.Fragment>
-      <h1>Create poetry entry</h1>
+      <PageHeader>
+        <h1>Create poetry entry</h1>
+      </PageHeader>
       <PoetryEntryForm handleSubmit={handleSubmit} />
     </React.Fragment>
   )

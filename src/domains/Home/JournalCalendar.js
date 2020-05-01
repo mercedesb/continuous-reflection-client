@@ -35,8 +35,13 @@ export function JournalCalendar({ journals }) {
     }, [])
   }
 
+  const getJournalNames = () => {
+    return [...new Set(entries.map(e => e.journal).map(j => j.name))]
+  }
+
   return (
-    <div className='h-64 mb-8'>
+    <div className='h-64 mb-4'>
+      <h2>Your writing history for {getJournalNames().join(', ')}</h2>
       <CalendarChart data={getCalendarData()} />
     </div>
   )

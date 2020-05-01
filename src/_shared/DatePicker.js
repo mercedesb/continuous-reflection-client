@@ -10,7 +10,7 @@ import './_styles/DatePicker.css'
 export function DatePicker({ name, handleChange, value, label }) {
   return (
     <InputWrapper>
-      <InputLabel name={name} label={label} />
+      <InputLabel name={name} label={label} className='w-1/6' />
 
       <DayPickerInput
         name={name}

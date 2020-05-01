@@ -68,7 +68,7 @@ export function MoodOverTime({ journals }) {
   }
 
   return (
-    <div className='h-64'>
+    <div className='h-64 mb-4'>
       <LineChart
         data={getLineGraphData()}
         getColor={getColor}

@@ -11,9 +11,6 @@ export function Nav() {
         <Link to='/journals' className='no-underline my-4 mx-4 font-semibold text-xl'>
           Journals
         </Link>
-        <Link to='/profile' className='no-underline my-4 mx-4 font-semibold text-xl'>
-          Profile
-        </Link>
         <Link to='/sign-out' className='no-underline my-4 mx-4 font-semibold text-xl'>
           Sign out
         </Link>

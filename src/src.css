@@ -1,21 +1,27 @@
 @tailwind base;
 
-h1 {
+h1,
+.h1 {
   @apply text-3xl font-sans;
 }
-h2 {
+h2,
+.h2 {
   @apply text-2xl font-sans font-semibold;
 }
-h3 {
+h3,
+.h3 {
   @apply text-xl font-sans font-extrabold;
 }
-h4 {
+h4,
+.h4 {
   @apply text-xl font-sans font-semibold;
 }
-h5 {
+h5,
+.h5 {
   @apply text-lg font-sans font-semibold;
 }
-h6 {
+h6,
+.h6 {
   @apply text-lg font-sans;
 }
 a {

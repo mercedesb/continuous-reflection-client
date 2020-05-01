@@ -12,17 +12,26 @@ let mockEntries = [
     content: {
       entryDate: '2020-02-08T22:41:28+0000',
       mood: 'test'
+    },
+    journal: {
+      name: 'One'
     }
   },
   {
     content: {
       entryDate: '2020-02-12T22:41:28+0000',
       mood: 'fake'
+    },
+    journal: {
+      name: 'Two'
     }
   },
   {
     content: {
       entryDate: '2020-02-12T22:41:28+0000'
+    },
+    journal: {
+      name: 'Three'
     }
   }
 ]
